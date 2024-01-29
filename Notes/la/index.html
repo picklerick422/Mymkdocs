@@ -476,36 +476,9 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-                  <!--
-Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to
-deal in the Software without restriction, including without limitation the
-rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-sell copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-IN THE SOFTWARE.
--->
-
-<!-- Edit button -->
+                  
 
 
-<!--
-Hack: check whether the content contains a h1 headline. If it
-doesn't, the page title (or respectively site name) is used
-as the main headline.
--->
-
-
-<!-- Markdown content -->
 <h1 id="_1">线性代数（甲）</h1>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -513,53 +486,16 @@ as the main headline.
 </div>
 <p><a href="https://cloud.189.cn/web/share?code=EfIZrifYn2ii">线代（甲）Made By ZJU_PCZ.zip————访问码：6hj8</a></p>
 
-<!-- Source file information -->
-
-
-<!-- Get setting from mkdocs.yml, but allow page-level overrides -->
-<!-- 在不需要评论的页面设置 `vssue: "" ` 这个meta信息（需在mkdocs.yml中添加meta 这个pythonmarkdown 插件）即可关闭该页面的评论功能，比如在about页面关闭评论:
-
----
-vssue: ""
----
-
-# about
-
--->
 
 
 
-<!-- Inject Disqus into current page -->
 
-    <div id="vssue"></div>
 
-    <!--<link rel="stylesheet" href="https://unpkg.com/vssue/dist/vssue.min.css">
-OR: vue full build (runtime + compiler)  -->
-<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
-<!-- Vssue Github build -->
-<script src="https://unpkg.com/vssue/dist/vssue.github.min.js"></script>
 
-<script>
-    new Vue({
-    el: '#vssue',
 
-    data: {
-        title: options => `${options.prefix}${document.title}`,
 
-        options: {
-        owner: 'shafishcn',
-        repo: 'shafish_blog',
-        clientId: 'xxx',
-        clientSecret: 'xxx', // only required for some of the platforms
-        prefix: '[BlogComment]',
-        labels: [':sunny:'],
-        issueContent: ({ url }) =>`这个 Issue 由 Vssue 自动创建，用来存储该页面的评论：${url}`
-        },
-    },
 
-    template: `<vssue :title="title" :options="options"></vssue>`,
-    })
-</script>
+
 
                 
               </article>
