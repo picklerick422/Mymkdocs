@@ -639,6 +639,22 @@
 <a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="o">&gt;&gt;</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">yourusername</span><span class="o">/</span><span class="n">mymkdocs</span><span class="o">.</span><span class="n">git</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="o">&gt;&gt;</span> <span class="n">mkdocs</span> <span class="n">gh</span><span class="o">-</span><span class="n">deploy</span>
 </code></pre></div></td></tr></table></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>多次上传之后，如果出现问题，形如：</p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">hint</span><span class="p">:</span> <span class="n">Updates</span> <span class="n">were</span> <span class="n">rejected</span> <span class="n">because</span> <span class="n">the</span> <span class="n">remote</span> <span class="n">contains</span> <span class="n">work</span> <span class="n">that</span> <span class="n">you</span> <span class="n">do</span> <span class="ow">not</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="n">hint</span><span class="p">:</span> <span class="n">have</span> <span class="n">locally</span><span class="o">.</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">usually</span> <span class="n">caused</span> <span class="n">by</span> <span class="n">another</span> <span class="n">repository</span> <span class="n">pushing</span> <span class="n">to</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="n">hint</span><span class="p">:</span> <span class="n">the</span> <span class="n">same</span> <span class="n">ref</span><span class="o">.</span> <span class="n">If</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">integrate</span> <span class="n">the</span> <span class="n">remote</span> <span class="n">changes</span><span class="p">,</span> <span class="n">use</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="n">hint</span><span class="p">:</span> <span class="s1">&#39;git pull&#39;</span> <span class="n">before</span> <span class="n">pushing</span> <span class="n">again</span><span class="o">.</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="n">hint</span><span class="p">:</span> <span class="n">See</span> <span class="n">the</span> <span class="s1">&#39;Note about fast-forwards&#39;</span> <span class="ow">in</span> <span class="s1">&#39;git push --help&#39;</span> <span class="k">for</span> <span class="n">details</span><span class="o">.</span>
+</code></pre></div></td></tr></table></div>
+不要慌张，只是本地数据库和remote数据冲突了而已，只需要同步一下：
+<code>&gt;&gt; git pull origin gh-pages</code> 即可</p>
+</div>
 <p>自动根据 mkdocs.yml 中设置的项目地址部署到 GitHub 的 gh-pages 分支中</p>
 <h2 id="3"><strong>3 配置文件</strong></h2>
 <ul>
@@ -654,31 +670,31 @@
 <p class="admonition-title">Tip</p>
 <p>还有一件事（老爹音），不知道大家有没有可能出现这样的问题，就是自定义域名过期之后，即便把它的文件删掉，浏览器也会自动跳转到你原先自定义的域名……（我在这个问题上卡了好一会TAT）这是其实是因为浏览器的dns记忆，清一下缓存就好了QAQ</p>
 </div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-4-10">10</a></span>
-<span class="normal"><a href="#__codelineno-4-11">11</a></span>
-<span class="normal"><a href="#__codelineno-4-12">12</a></span>
-<span class="normal"><a href="#__codelineno-4-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">theme</span><span class="p">:</span> 
-<a id="__codelineno-4-2" name="__codelineno-4-2"></a>  <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;material&#39;</span>     <span class="o">//</span> <span class="n">使用material主题</span><span class="p">,</span><span class="n">需要pip安</span>   <span class="n">装mkdocs</span><span class="o">-</span><span class="n">material</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="hll">  <span class="n">custom_dir</span><span class="p">:</span> <span class="n">pathname</span> <span class="o">//</span> <span class="n">用于覆盖模板</span><span class="err">（</span><span class="n">切记</span><span class="err">：</span><span class="n">该行一定要放在</span><span class="s1">&#39;name:&#39;</span><span class="n">的下一行</span><span class="err">）</span>
-</span><a id="__codelineno-4-4" name="__codelineno-4-4"></a>  <span class="n">language</span><span class="p">:</span> <span class="s1">&#39;zh&#39;</span>       <span class="o">//</span> <span class="n">使用中文</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5"></a>  <span class="n">icon</span><span class="p">:</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6"></a>    <span class="n">logo</span><span class="p">:</span> <span class="o">...</span>          <span class="o">//</span> <span class="n">左上角的</span> <span class="n">logo</span> 
-<a id="__codelineno-4-7" name="__codelineno-4-7"></a>  <span class="n">feature</span><span class="p">:</span> 
-<a id="__codelineno-4-8" name="__codelineno-4-8"></a>    <span class="o">...</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9"></a>  <span class="n">font</span><span class="p">:</span>                <span class="o">//</span> <span class="n">字体</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10"></a>    <span class="n">text</span><span class="p">:</span> <span class="o">...</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11"></a>    <span class="n">code</span><span class="p">:</span> <span class="o">...</span>
-<a id="__codelineno-4-12" name="__codelineno-4-12"></a>  <span class="n">palette</span><span class="p">:</span>
-<a id="__codelineno-4-13" name="__codelineno-4-13"></a>    <span class="o">...</span>                <span class="o">//</span> <span class="n">配色方案</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">theme</span><span class="p">:</span> 
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>  <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;material&#39;</span>     <span class="o">//</span> <span class="n">使用material主题</span><span class="p">,</span><span class="n">需要pip安</span>   <span class="n">装mkdocs</span><span class="o">-</span><span class="n">material</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="hll">  <span class="n">custom_dir</span><span class="p">:</span> <span class="n">pathname</span> <span class="o">//</span> <span class="n">用于覆盖模板</span><span class="err">（</span><span class="n">切记</span><span class="err">：</span><span class="n">该行一定要放在</span><span class="s1">&#39;name:&#39;</span><span class="n">的下一行</span><span class="err">）</span>
+</span><a id="__codelineno-5-4" name="__codelineno-5-4"></a>  <span class="n">language</span><span class="p">:</span> <span class="s1">&#39;zh&#39;</span>       <span class="o">//</span> <span class="n">使用中文</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>  <span class="n">icon</span><span class="p">:</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a>    <span class="n">logo</span><span class="p">:</span> <span class="o">...</span>          <span class="o">//</span> <span class="n">左上角的</span> <span class="n">logo</span> 
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>  <span class="n">feature</span><span class="p">:</span> 
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>    <span class="o">...</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a>  <span class="n">font</span><span class="p">:</span>                <span class="o">//</span> <span class="n">字体</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a>    <span class="n">text</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>    <span class="n">code</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a>  <span class="n">palette</span><span class="p">:</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a>    <span class="o">...</span>                <span class="o">//</span> <span class="n">配色方案</span>
 </code></pre></div></td></tr></table></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
