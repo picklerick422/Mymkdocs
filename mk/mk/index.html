@@ -44,6 +44,8 @@
       
     
     
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -483,7 +485,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3 配置文件">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 评论系统
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 评论系统">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -567,7 +578,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3 配置文件">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 评论系统
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 评论系统">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -608,7 +628,7 @@
 <p>mkdocs 是 python 的一个包，直接 <code>&gt;&gt;pip install mkdocs</code> 就可以了</p>
 <div class="admonition tips">
 <p class="admonition-title">Tips</p>
-<p>上述该指令以及以下与pip相关的各类下载操作，如遇到因为下载过慢而出现的error，如 <img align="left" alt="13713fc52c1fe67e4.png" src="https://7up.pics/images/2024/01/28/13713fc52c1fe67e4.png" /></p>
+<p>上述该指令以及以下与pip相关的各类下载操作，如遇到因为下载过慢而出现的error，如 <img alt="13713fc52c1fe67e4.png" class="zoom" src="https://7up.pics/images/2024/01/28/13713fc52c1fe67e4.png" /></p>
 <p>·错误原因：连不上pip的源，下载依赖包失败</p>
 <p>·解决方法：<code>&gt;&gt; pip install -i https://pypi.tuna.tsinghua.edu.cn/simple/</code></p>
 <p>使用了如是后缀，即可从国内镜像网站获取软件包QAQ！（上述例子使用清华镜像源安装软件包）</p>
@@ -628,7 +648,7 @@
 打开实时渲染服务（默认端口 8000）
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&gt;&gt; mkdocs serve
 </code></pre></div>
-浏览器中输入 127.0.0.1:8000 预览。终端键入 <code>Ctrl</code>+<code>C</code> 关闭服务器</p>
+浏览器中输入 127.0.0.1:8000 预览。终端键入 <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span> 关闭服务器</p>
 <p><code>&gt;&gt; mkdocs build        //生成静态网页代码</code></p>
 <p>这个命令会在<code>test</code>目录下生成一个目录<code>site/</code>，这个目录中包含了静态站点的页面内容。这时就可以将里面的内容部署到网站上了</p>
 <p>接下来，我们可以在GitHub中创建一个仓库，名为<code>mymkdocs</code>。</p>
@@ -708,6 +728,8 @@
 <li>plugins：一些插件，比如搜索 search，显示最近修改时间 git-revision-date-localized</li>
 <li>nav：目录结构</li>
 </ul>
+<h2 id="4"><strong>4 评论系统</strong></h2>
+<p>浙里用的是比较常用的giscus扩展插件……</p>
 <blockquote>
 <h4 id="_1">本站的配置文件</h4>
 <p>还没有制作好QAQ</p>
@@ -795,6 +817,8 @@
     
     
       <script src="../../assets/javascripts/bundle.c18c5fb9.min.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
       
     
   </body>
