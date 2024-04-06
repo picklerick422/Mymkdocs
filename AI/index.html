@@ -12,7 +12,7 @@
         <link rel="prev" href="../Notes/la/">
       
       
-        <link rel="next" href="../mk/mk/">
+        <link rel="next" href="Basic%20Neural%20Network/">
       
       
       <link rel="icon" href="../img/favicon1.png">
@@ -514,6 +514,60 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#3-relurectified-linear-unit" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. ReLU激活函数（修正线性单元（Rectified Linear Unit））
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-leaky-relu" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Leaky ReLU函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-parametric-relu" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Parametric ReLU函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-elu" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. ELU函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-selu" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. SeLU函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Softmax函数
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -532,6 +586,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Basic%20Neural%20Network/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    神经网络编程基础
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -743,6 +818,60 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#3-relurectified-linear-unit" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. ReLU激活函数（修正线性单元（Rectified Linear Unit））
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-leaky-relu" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Leaky ReLU函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-parametric-relu" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Parametric ReLU函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-elu" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. ELU函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-selu" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. SeLU函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Softmax函数
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -835,6 +964,80 @@
 </li>
 </ul>
 <h3 id="2-tanh"><strong>2. tanh函数</strong>（双曲正切激活函数）</h3>
+<ul>
+<li><strong>函数表达：</strong><h4 style="text-align:center">$$ f(x)=\tanh (x)=\frac{e^{x}-e^{-x}}{e^{x}+e^{-x}}=\frac{2}{1+e^{-2x}}-1 $$</h4></li>
+</ul>
+<h4 style="text-align:center">$$ tanh(x)=2sigmoid(2x)-1 $$ </h4>
+
+<ul>
+<li>
+<p><strong>取值范围：</strong><h3 style="text-align:center">(-1,1)</h3></p>
+</li>
+<li>
+<p><strong>图像：</strong></p>
+</li>
+</ul>
+<p><img alt="tanh.pic" src="https://pic1.zhimg.com/80/v2-2e4c92ede47e719d0ce54653b2f443d8_1440w.webp" /></p>
+<ul>
+<li>
+<p><strong>不足：</strong></p>
+<p>· <strong>梯度消失</strong>：类似于sigmoid函数，当输入较大或较小时，输出几乎是平滑的并且梯度较小，这不利于权重更新。</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>注意：</strong>在一般的二元分类问题中，tanh 函数用于隐藏层，而 sigmoid 函数用于输出层，但这并不是固定的，需要根据特定问题进行调整。</p>
+</blockquote>
+<h3 id="3-relurectified-linear-unit"><strong>3. ReLU激活函数</strong>（修正线性单元（Rectified Linear Unit））</h3>
+<ul>
+<li><strong>函数表达：</strong><h4 style="text-align:center"></li>
+</ul>
+<div class="arithmatex">\[\begin{aligned} f(x) &amp;=\left\{\begin{array}{ll} 
+x &amp; , x&gt;=0 \\ 0 &amp; , x&lt;0 
+\end{array}\right.\\ &amp;=\max (0, x) \end{aligned}\]</div>
+<ul>
+<li><strong>图像：</strong></li>
+</ul>
+<p><img alt="ReLU.pic" src="https://pic3.zhimg.com/80/v2-8505da32b28e52b61772f04fbcc3c9a2_1440w.webp" /></p>
+</h4>
+<ul>
+<li>
+<p><strong>优点：</strong></p>
+<p>· 当输入为正时，<strong>导数为1</strong>，一定程度上<strong>改善了梯度消失问题</strong>，加速梯度下降的收敛速度；</p>
+<p>· 计算速度<strong>快</strong>得多。ReLU 函数中只存在线性关系</p>
+<p>· <strong>生物学合理性（Biological Plausibility）</strong>,比如单侧抑制、宽兴奋边界（即兴奋程度可以非常高）</p>
+</li>
+<li>
+<p><strong>不足：</strong></p>
+<p>· <strong>Dead ReLU 问题</strong>。当输入为负时，ReLU 完全失效。有些区域很敏感，有些则不敏感。但是在反向传播过程中，如果输入负数，则梯度将完全为零；</p>
+<blockquote>
+<p><strong>【Dead ReLU问题】</strong>ReLU神经元在训练时比较容易“死亡”。在训练时，如果参数在一次不恰当的更新后，第一个隐藏层中的某个ReLU 神经元在所有的训练数据上都不能被激活，那么这个神经元自身参数的梯度永远都会是0，在以后的训练过程中永远不能被激活。这种现象称为死亡ReLU问题，并且也有可能会发生在其他隐藏层。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="4-leaky-relu"><strong>4. Leaky ReLU函数</strong></h3>
+<ul>
+<li><strong>函数表达：</strong><h4 style="text-align:center"></li>
+</ul>
+<div class="arithmatex">\[\begin{aligned} \text { LeakyReLU }(x) &amp;=\left\{\begin{array}{ll} x &amp; \text { if } x&gt;0 \\ \gamma x &amp; \text { if } x \leq 0 \end{array}\right.\\ &amp;=\max (0, x)+\gamma \min (0, x), \end{aligned}\]</div>
+</h4>
+<p style="text-align:center">$$ \gamma是个很小的数，下图以\gamma=0.1为例 $$</p>
+
+<ul>
+<li><strong>图像：</strong></li>
+</ul>
+<p><img alt="Leaky ReLU.pic" src="https://pic3.zhimg.com/80/v2-a942719eba0ee2d65db0a8a030d280ba_1440w.webp" /></p>
+<ul>
+<li>
+<p><strong>优点</strong></p>
+<p>· 缓解Dead ReLU问题</p>
+<p>· 扩大函数范围</p>
+</li>
+</ul>
+<h3 id="5-parametric-relu"><strong>5. Parametric ReLU函数</strong></h3>
+<h3 id="6-elu"><strong>6. ELU函数</strong></h3>
+<h3 id="7-selu"><strong>7. SeLU函数</strong></h3>
+<h3 id="8-softmax"><strong>8. Softmax函数</strong></h3>
+<p>……</p>
 <h2 id="referance"><strong>三、Referance</strong></h2>
 <ul>
 <li><a href="https://zhuanlan.zhihu.com/p/364620596">深度学习笔记：如何理解激活函数？（附常用激活函数）</a></li>
