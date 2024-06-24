@@ -447,6 +447,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    神经网络编程基础
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -456,6 +467,94 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-binary-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 二分类（Binary Classification）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 二分类（Binary Classification）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      【例】. 二分类问题的example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      符号定义：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-logistic-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 逻辑回归 (Logistic Regression)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-logistic-regression-cost-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 逻辑回归的代价函数（Logistic Regression Cost Function）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-gradient-descent" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 梯度下降法（Gradient Descent）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-computation-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 计算图（Computation Graph）
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -610,6 +709,83 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-binary-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 二分类（Binary Classification）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 二分类（Binary Classification）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      【例】. 二分类问题的example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      符号定义：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-logistic-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 逻辑回归 (Logistic Regression)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-logistic-regression-cost-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 逻辑回归的代价函数（Logistic Regression Cost Function）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-gradient-descent" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 梯度下降法（Gradient Descent）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-computation-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 计算图（Computation Graph）
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -624,6 +800,101 @@
 
 
 <h1 id="chapter-iibasics-of-neural-network-programming"><strong>Chapter II：神经网络的编程基础(Basics of Neural Network programming)</strong></h1>
+<h2 id="21-binary-classification"><strong>2.1 二分类</strong>（Binary Classification）</h2>
+<ul>
+<li>
+<p>前向暂停(<strong>forward pause</strong>) or 向前传播(<strong>forward propagation</strong>)</p>
+</li>
+<li>
+<p>反向暂停(<strong>backward pause</strong>) or 反向传播(<strong>backward propagation</strong>)</p>
+</li>
+<li>
+<p>逻辑回归(<strong>logistic regression</strong>) ---&gt; 应用于二分类问题的算法</p>
+</li>
+<li>
+<h3 id="example">【例】. 二分类问题的example</h3>
+<blockquote>
+<p><img alt="cat1" src="http://www.ai-start.com/dl2017/images/269118812ea785aee00f6ffc11b5c882.png" /></p>
+</blockquote>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>一张图片包含axb个像素点，每个像素点包含了红绿蓝三原色的强度值。将他们全都放在同一个列矩阵当中，构成(n=)3ab行1列矩阵，作为一个输入值。</p>
+<p>在二分类问题中，我们的目标就是训练出一个分类机，它以图片的特征向量作为输入，然后预测输出结果y为1还是0，也就是预测图片中是否有猫：</p>
+<p><img alt="cat2" src="http://www.ai-start.com/dl2017/images/e173fd42de5f1953deb617623d5087e8.png" /></p>
+</div>
+<h3 id="_1"><strong>符号定义：</strong></h3>
+<p><span class="arithmatex">\(x\)</span>：表示一个 <span class="arithmatex">\(n_{x}\)</span> 维数据，为输入数据，维度为 <span class="arithmatex">\((n_{x} ,1)\)</span>;</p>
+<p><span class="arithmatex">\(y\)</span>：表示输出结果，取值为 <span class="arithmatex">\((0,1)\)</span></p>
+<p><span class="arithmatex">\((x^{(i)},y^{(i)})\)</span>:表示第组 <span class="arithmatex">\(i\)</span> 数据，可能是训练数据，也可能是测试数据，此处默认为训练数据； </p>
+<p><span class="arithmatex">\(X\)</span> = <span class="arithmatex">\([x^{(1)},x^{(2)},...,x^{(m)}]\)</span>：表示所有的训练数据集的输入值，放在一个 <span class="arithmatex">\(n_{x}\)</span> x <span class="arithmatex">\(m\)</span> 的矩阵中，其中<span class="arithmatex">\(m\)</span>表示样本数目; </p>
+<p><span class="arithmatex">\(Y\)</span> = <span class="arithmatex">\([y^{(1)},y^{(2)},...,y^{(m)}]\)</span>：对应表示所有训练数据集的输出值，维度为 <span class="arithmatex">\(1\)</span> x <span class="arithmatex">\(m\)</span>。</p>
+<p>一对(x,y)表示一个单独的样本，<span class="arithmatex">\(X\)</span>为训练集，有时写做 <span class="arithmatex">\(M_{train}\)</span></p>
+<p><img alt="notation" src="http://www.ai-start.com/dl2017/images/12f602ed40ba90540112ae0fee77fadf.png" /></p>
+<h2 id="22-logistic-regression"><strong>2.2 逻辑回归</strong> (Logistic Regression)</h2>
+<p><strong>Hypothesis Function</strong>（假设函数）：</p>
+<div class="arithmatex">\[ \hat{y}=\omega^{T} \hat{x}+b \qquad or \qquad \hat{y}=\sigma (\theta ^{T}x)\]</div>
+<p><span class="arithmatex">\(X\)</span>：输入的特征向量</p>
+<p><span class="arithmatex">\(\hat{y}\)</span>：对于实际值y的估计</p>
+<p><span class="arithmatex">\(\omega、b\)</span>：参数</p>
+<p><span class="arithmatex">\(\theta ^{T}\)</span>：参数集合，包含<span class="arithmatex">\(b\)</span>以及多个 <span class="arithmatex">\(\omega\)</span></p>
+<p><img alt="function" src="http://www.ai-start.com/dl2017/images/7e304debcca5945a3443d56bcbdd2964.png" />
+<img alt="theta" src="http://www.ai-start.com/dl2017/images/f5049dc7ce815b495fbbdf71f23fc66c.png" /></p>
+<h2 id="23-logistic-regression-cost-function"><strong>2.3 逻辑回归的代价函数</strong>（Logistic Regression Cost Function）</h2>
+<ul>
+<li><strong>代价函数目的</strong>：为了训练出逻辑回归模型的<span class="arithmatex">\(\omega\)</span>和<span class="arithmatex">\(b\)</span>参数，需要通过训练<strong>代价函数</strong>来得到参数</li>
+</ul>
+<p><span class="arithmatex">\(\hat{y}^{(i)}=\sigma (\omega^{T}x^{(i)}+b), \  where \  \sigma (z)=\tfrac{1}{1+e^{-z}}\)</span></p>
+<p>为了让模型通过学习调整参数，你需要给予一个<span class="arithmatex">\(m\)</span>样本的训练集，这会让你在训练集上找到参数 <span class="arithmatex">\(\omega\)</span>和参数<span class="arithmatex">\(b\)</span>,来得到你的输出。</p>
+<ul>
+<li>
+<p><strong>损失函数</strong>(误差函数)：<strong>Loss function</strong>: <span class="arithmatex">\(L(\hat{y},y)\)</span> <u>用以预测输出值与实际值有多接近。</u>
+平时我们用方差来评估误差，而在逻辑回归中的优化目标不是凸优化，只能找到多个局部最优值。</p>
+<div class="admonition note">
+<p class="admonition-title">凸优化</p>
+<p><strong>凸优化（convex optimization）</strong>就是：1、在最小化（最大化）的要求下   <br />
+2、目标函数是一个凸函数（凹函数）<br />
+3、同时约束条件所形成的可行域集合是一个凸集。</p>
+<p><strong>1.凸集</strong>：集合C中任意2个元素连线上的点也在集合C中，则C为凸集。<em>（类似于线性空间）</em></p>
+<p><strong>2.凸函数</strong></p>
+</div>
+<p>我们使用：<span class="arithmatex">\(L(\hat{y},y)=-ylog(\hat{y})-(1-y)log(1-\hat{y})\)</span></p>
+<ul>
+<li>
+<p><span class="arithmatex">\(y=1\)</span>时损失函数 <span class="arithmatex">\(L=-log(\hat{y})\)</span>，此时<span class="arithmatex">\(y\)</span>越大，损失越小</p>
+</li>
+<li>
+<p><span class="arithmatex">\(y=0\)</span>时损失函数 <span class="arithmatex">\(L=-log(1-\hat{y})\)</span>，此时<span class="arithmatex">\(y\)</span>越小，损失越小</p>
+</li>
+</ul>
+<p>为衡量算法在全部训练样本上的表现如何，我们需要定义一个<strong>算法的代价函数</strong>：对<span class="arithmatex">\(m\)</span>个样本的损失函数求和再除以<span class="arithmatex">\(m\)</span>：
+$$ J(\omega,b)=\tfrac{1}{m}\sum_{i=1}^{m}L(\hat{y}^{(i)},y^{(i)})=\tfrac{1}{m}\sum_{i=1}^{m}(-\hat{y}^{(i)}-(1-\hat{y}^{(i)})log(1-\hat{y}^{(i)}))$$</p>
+</li>
+</ul>
+<h2 id="24-gradient-descent"><strong>2.4 梯度下降法</strong>（Gradient Descent）</h2>
+<p>在你测试集上，通过最小化代价函数（成本函数）<span class="arithmatex">\(J(\omega,b)\)</span> 来训练的参数 <span class="arithmatex">\(\omega、b\)</span> 。即找到最低点对应的 <span class="arithmatex">\(\omega、b\)</span>（见下图）</p>
+<p><img alt="gradient" src="http://www.ai-start.com/dl2017/images/a3c81d2c8629d674141def47dc02f312.jpg" /></p>
+<p>但可能会出现很多不同的局部最小值。由于代价函数 <span class="arithmatex">\(J(\omega,b)\)</span> 的特性，必须定义其为凸函数</p>
+<ul>
+<li><strong>步骤</strong><ul>
+<li><strong>1.初始化</strong>：初始化 <span class="arithmatex">\(\omega、b\)</span>（可随机</li>
+<li><strong>2.迭代</strong>：朝最陡的下坡方向走一步，不断地迭代，直到找到全局最优解</li>
+</ul>
+</li>
+</ul>
+<p>以一元（<span class="arithmatex">\(\omega\)</span>）时：</p>
+<div class="arithmatex">\[Repeat\left\{\omega:=\omega-\alpha \tfrac{dJ(\omega)}{d\omega}\right\}\]</div>
+<p>二元(<span class="arithmatex">\(\omega、b\)</span>)</p>
+<div class="arithmatex">\[
+ \begin{Bmatrix}
+ \omega:=\omega-\alpha \tfrac{\partial J(\omega)}{\partial\omega}\\\omega:=b-\alpha \tfrac{\partial J(\omega)}{\partial b}
+\end{Bmatrix}
+\]</div>
+<p>"<span class="arithmatex">\(:=\)</span>" 表示更新参数</p>
+<p>"<span class="arithmatex">\(\alpha\)</span>" 表示学习率（<strong>learning rate</strong>）,用以控制步长（<strong>step</strong>）</p>
+<p><img alt="slope" src="http://www.ai-start.com/dl2017/images/4fb3b91114ecb2cd81ec9f3662434d81.jpg" /></p>
+<h2 id="25-computation-graph"><strong>2.5 计算图</strong>（Computation Graph）</h2>
 
 
 
