@@ -307,6 +307,72 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    大物
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            大物
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Notes/physics1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    大物（甲）I
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../Notes/la/" class="md-nav__link">
         
@@ -552,6 +618,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#26-logistic-regression-gradient-descent" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 逻辑回归中的梯度下降（Logistic Regression Gradient Descent）
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -689,6 +764,74 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    杂项
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            杂项
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/url/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    URL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -784,6 +927,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#26-logistic-regression-gradient-descent" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 逻辑回归中的梯度下降（Logistic Regression Gradient Descent）
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -873,7 +1025,7 @@ $$ J(\omega,b)=\tfrac{1}{m}\sum_{i=1}^{m}L(\hat{y}^{(i)},y^{(i)})=\tfrac{1}{m}\s
 </li>
 </ul>
 <h2 id="24-gradient-descent"><strong>2.4 梯度下降法</strong>（Gradient Descent）</h2>
-<p>在你测试集上，通过最小化代价函数（成本函数）<span class="arithmatex">\(J(\omega,b)\)</span> 来训练的参数 <span class="arithmatex">\(\omega、b\)</span> 。即找到最低点对应的 <span class="arithmatex">\(\omega、b\)</span>（见下图）</p>
+<p><big><mark>在你测试集上，通过最小化代价函数（成本函数）<span class="arithmatex">\(J(\omega,b)\)</span> 来训练的参数 <span class="arithmatex">\(\omega、b\)</span> 。即找到最低点对应的 <span class="arithmatex">\(\omega、b\)</span></mark></big>（见下图）</p>
 <p><img alt="gradient" src="http://www.ai-start.com/dl2017/images/a3c81d2c8629d674141def47dc02f312.jpg" /></p>
 <p>但可能会出现很多不同的局部最小值。由于代价函数 <span class="arithmatex">\(J(\omega,b)\)</span> 的特性，必须定义其为凸函数</p>
 <ul>
@@ -895,6 +1047,8 @@ $$ J(\omega,b)=\tfrac{1}{m}\sum_{i=1}^{m}L(\hat{y}^{(i)},y^{(i)})=\tfrac{1}{m}\s
 <p>"<span class="arithmatex">\(\alpha\)</span>" 表示学习率（<strong>learning rate</strong>）,用以控制步长（<strong>step</strong>）</p>
 <p><img alt="slope" src="http://www.ai-start.com/dl2017/images/4fb3b91114ecb2cd81ec9f3662434d81.jpg" /></p>
 <h2 id="25-computation-graph"><strong>2.5 计算图</strong>（Computation Graph）</h2>
+<h2 id="26-logistic-regression-gradient-descent"><strong>2.6 逻辑回归中的梯度下降</strong>（Logistic Regression Gradient Descent）</h2>
+<p>再次明确我们的目标：通过损失函数<span class="arithmatex">\(J(\omega,b)\)</span> 来训练的参数 <span class="arithmatex">\(\omega、b\)</span> 。即找到最低点对应的 <span class="arithmatex">\(\omega、b\)</span>（见下图）</p>
 
 
 
