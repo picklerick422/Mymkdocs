@@ -974,7 +974,7 @@
 <p class="admonition-title">Note</p>
 <p>一张图片包含axb个像素点，每个像素点包含了红绿蓝三原色的强度值。将他们全都放在同一个列矩阵当中，构成(n=)3ab行1列矩阵，作为一个输入值。</p>
 <p>在二分类问题中，我们的目标就是训练出一个分类机，它以图片的特征向量作为输入，然后预测输出结果y为1还是0，也就是预测图片中是否有猫：</p>
-<p><img alt="cat2" src="http://www.ai-start.com/dl2017/images/e173fd42de5f1953deb617623d5087e8.png" /></p>
+<p><a href="https://7up.pics/image/AHQCR9"><img alt="cat2" src="https://7up.pics/images/2024/08/04/cat2.png" /></a></p>
 </div>
 <h3 id="_1"><strong>符号定义：</strong></h3>
 <p><span class="arithmatex">\(x\)</span>：表示一个 <span class="arithmatex">\(n_{x}\)</span> 维数据，为输入数据，维度为 <span class="arithmatex">\((n_{x} ,1)\)</span>;</p>
@@ -983,7 +983,7 @@
 <p><span class="arithmatex">\(X\)</span> = <span class="arithmatex">\([x^{(1)},x^{(2)},...,x^{(m)}]\)</span>：表示所有的训练数据集的输入值，放在一个 <span class="arithmatex">\(n_{x}\)</span> x <span class="arithmatex">\(m\)</span> 的矩阵中，其中<span class="arithmatex">\(m\)</span>表示样本数目; </p>
 <p><span class="arithmatex">\(Y\)</span> = <span class="arithmatex">\([y^{(1)},y^{(2)},...,y^{(m)}]\)</span>：对应表示所有训练数据集的输出值，维度为 <span class="arithmatex">\(1\)</span> x <span class="arithmatex">\(m\)</span>。</p>
 <p>一对(x,y)表示一个单独的样本，<span class="arithmatex">\(X\)</span>为训练集，有时写做 <span class="arithmatex">\(M_{train}\)</span></p>
-<p><img alt="notation" src="http://www.ai-start.com/dl2017/images/12f602ed40ba90540112ae0fee77fadf.png" /></p>
+<p><a href="https://7up.pics/image/AHQ4gf"><img alt="notation" src="https://7up.pics/images/2024/08/04/notation.png" /></a></p>
 <h2 id="22-logistic-regression"><strong>2.2 逻辑回归</strong> (Logistic Regression)</h2>
 <p><strong>Hypothesis Function</strong>（假设函数）：</p>
 <div class="arithmatex">\[ \hat{y}=\omega^{T} \hat{x}+b \qquad or \qquad \hat{y}=\sigma (\theta ^{T}x)\]</div>
@@ -991,8 +991,8 @@
 <p><span class="arithmatex">\(\hat{y}\)</span>：对于实际值y的估计</p>
 <p><span class="arithmatex">\(\omega、b\)</span>：参数</p>
 <p><span class="arithmatex">\(\theta ^{T}\)</span>：参数集合，包含<span class="arithmatex">\(b\)</span>以及多个 <span class="arithmatex">\(\omega\)</span></p>
-<p><img alt="function" src="http://www.ai-start.com/dl2017/images/7e304debcca5945a3443d56bcbdd2964.png" />
-<img alt="theta" src="http://www.ai-start.com/dl2017/images/f5049dc7ce815b495fbbdf71f23fc66c.png" /></p>
+<p><a href="https://7up.pics/image/AHQDBM"><img alt="function" src="https://7up.pics/images/2024/08/04/function.png" /></a>
+<a href="https://7up.pics/image/AHQNCZ"><img alt="theta" src="https://7up.pics/images/2024/08/04/theta.png" /></a></p>
 <h2 id="23-logistic-regression-cost-function"><strong>2.3 逻辑回归的代价函数</strong>（Logistic Regression Cost Function）</h2>
 <ul>
 <li><strong>代价函数目的</strong>：为了训练出逻辑回归模型的<span class="arithmatex">\(\omega\)</span>和<span class="arithmatex">\(b\)</span>参数，需要通过训练<strong>代价函数</strong>来得到参数</li>
@@ -1026,8 +1026,8 @@ $$ J(\omega,b)=\tfrac{1}{m}\sum_{i=1}^{m}L(\hat{y}^{(i)},y^{(i)})=\tfrac{1}{m}\s
 </ul>
 <h2 id="24-gradient-descent"><strong>2.4 梯度下降法</strong>（Gradient Descent）</h2>
 <p><big><mark>在你测试集上，通过最小化代价函数（成本函数）<span class="arithmatex">\(J(\omega,b)\)</span> 来训练的参数 <span class="arithmatex">\(\omega、b\)</span> 。即找到最低点对应的 <span class="arithmatex">\(\omega、b\)</span></mark></big>（见下图）</p>
-<p><img alt="gradient" src="http://www.ai-start.com/dl2017/images/a3c81d2c8629d674141def47dc02f312.jpg" /></p>
-<p>但可能会出现很多不同的局部最小值。由于代价函数 <span class="arithmatex">\(J(\omega,b)\)</span> 的特性，必须定义其为凸函数</p>
+<p><a href="https://7up.pics/image/AHQKVz"><img alt="gradient" src="https://7up.pics/images/2024/08/04/gradient.jpg" /></a>
+但可能会出现很多不同的局部最小值。由于代价函数 <span class="arithmatex">\(J(\omega,b)\)</span> 的特性，必须定义其为凸函数</p>
 <ul>
 <li><strong>步骤</strong><ul>
 <li><strong>1.初始化</strong>：初始化 <span class="arithmatex">\(\omega、b\)</span>（可随机</li>
@@ -1045,7 +1045,7 @@ $$ J(\omega,b)=\tfrac{1}{m}\sum_{i=1}^{m}L(\hat{y}^{(i)},y^{(i)})=\tfrac{1}{m}\s
 \]</div>
 <p>"<span class="arithmatex">\(:=\)</span>" 表示更新参数</p>
 <p>"<span class="arithmatex">\(\alpha\)</span>" 表示学习率（<strong>learning rate</strong>）,用以控制步长（<strong>step</strong>）</p>
-<p><img alt="slope" src="http://www.ai-start.com/dl2017/images/4fb3b91114ecb2cd81ec9f3662434d81.jpg" /></p>
+<p><a href="https://7up.pics/image/AHQhx4"><img alt="slope" src="https://7up.pics/images/2024/08/04/slope.jpg" /></a></p>
 <h2 id="25-computation-graph"><strong>2.5 计算图</strong>（Computation Graph）</h2>
 <h2 id="26-logistic-regression-gradient-descent"><strong>2.6 逻辑回归中的梯度下降</strong>（Logistic Regression Gradient Descent）</h2>
 <p>再次明确我们的目标：通过损失函数<span class="arithmatex">\(J(\omega,b)\)</span> 得到的参数 <span class="arithmatex">\(\omega、b\)</span> 来找到最合适的逻辑回归模型。</p>
