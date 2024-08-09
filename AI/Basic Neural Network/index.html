@@ -612,7 +612,7 @@
         <li class="md-nav__item">
   <a href="#25-computation-graph" class="md-nav__link">
     <span class="md-ellipsis">
-      2.5 计算图（Computation Graph）
+      【附】2.5 计算图（Computation Graph）
     </span>
   </a>
   
@@ -622,6 +622,57 @@
   <a href="#26-logistic-regression-gradient-descent" class="md-nav__link">
     <span class="md-ellipsis">
       2.6 逻辑回归中的梯度下降（Logistic Regression Gradient Descent）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-vectorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7 向量化（Vectorization）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7 向量化（Vectorization）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logistic-vectorizing-logistic-regressions-gradient" class="md-nav__link">
+    <span class="md-ellipsis">
+      向量化 logistic 回归的梯度输出（Vectorizing Logistic Regression's Gradient）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-python-broadcasting-in-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      【附】2.8 Python 中的广播（Broadcasting in Python）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#29-logistic-explanation-of-logistic-regression-cost-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      【附】2.9 logistic 损失函数的解释（Explanation of logistic regression cost function）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Referance
     </span>
   </a>
   
@@ -921,7 +972,7 @@
         <li class="md-nav__item">
   <a href="#25-computation-graph" class="md-nav__link">
     <span class="md-ellipsis">
-      2.5 计算图（Computation Graph）
+      【附】2.5 计算图（Computation Graph）
     </span>
   </a>
   
@@ -931,6 +982,57 @@
   <a href="#26-logistic-regression-gradient-descent" class="md-nav__link">
     <span class="md-ellipsis">
       2.6 逻辑回归中的梯度下降（Logistic Regression Gradient Descent）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-vectorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7 向量化（Vectorization）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7 向量化（Vectorization）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logistic-vectorizing-logistic-regressions-gradient" class="md-nav__link">
+    <span class="md-ellipsis">
+      向量化 logistic 回归的梯度输出（Vectorizing Logistic Regression's Gradient）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-python-broadcasting-in-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      【附】2.8 Python 中的广播（Broadcasting in Python）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#29-logistic-explanation-of-logistic-regression-cost-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      【附】2.9 logistic 损失函数的解释（Explanation of logistic regression cost function）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Referance
     </span>
   </a>
   
@@ -1024,6 +1126,11 @@
 $$ J(\omega,b)=\tfrac{1}{m}\sum_{i=1}^{m}L(\hat{y}^{(i)},y^{(i)})=\tfrac{1}{m}\sum_{i=1}^{m}(-\hat{y}^{(i)}-(1-\hat{y}^{(i)})log(1-\hat{y}^{(i)}))$$</p>
 </li>
 </ul>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>那么，具体来讲，为什么损失函数会是这样的形式呢？</p>
+<p>请见<strong>【附】2.9logistic 损失函数的解释</strong>（Explanation of logistic regression cost function）</p>
+</div>
 <h2 id="24-gradient-descent"><strong>2.4 梯度下降法</strong>（Gradient Descent）</h2>
 <p><big><mark>在你测试集上，通过最小化代价函数（成本函数）<span class="arithmatex">\(J(\omega,b)\)</span> 来训练的参数 <span class="arithmatex">\(\omega、b\)</span> 。即找到最低点对应的 <span class="arithmatex">\(\omega、b\)</span></mark></big>（见下图）</p>
 <p><a href="https://7up.pics/image/AHQKVz"><img alt="gradient" src="https://7up.pics/images/2024/08/04/gradient.jpg" /></a>
@@ -1046,9 +1153,142 @@ $$ J(\omega,b)=\tfrac{1}{m}\sum_{i=1}^{m}L(\hat{y}^{(i)},y^{(i)})=\tfrac{1}{m}\s
 <p>"<span class="arithmatex">\(:=\)</span>" 表示更新参数</p>
 <p>"<span class="arithmatex">\(\alpha\)</span>" 表示学习率（<strong>learning rate</strong>）,用以控制步长（<strong>step</strong>）</p>
 <p><a href="https://7up.pics/image/AHQhx4"><img alt="slope" src="https://7up.pics/images/2024/08/04/slope.jpg" /></a></p>
-<h2 id="25-computation-graph"><strong>2.5 计算图</strong>（Computation Graph）</h2>
+<h2 id="25-computation-graph"><strong>【附】2.5 计算图</strong>（Computation Graph）</h2>
 <h2 id="26-logistic-regression-gradient-descent"><strong>2.6 逻辑回归中的梯度下降</strong>（Logistic Regression Gradient Descent）</h2>
 <p>再次明确我们的目标：通过损失函数<span class="arithmatex">\(J(\omega,b)\)</span> 得到的参数 <span class="arithmatex">\(\omega、b\)</span> 来找到最合适的逻辑回归模型。</p>
+<p>代码示例：（结合代码梳理思路）</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">J</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">dw1</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">dw2</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">db</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>  <span class="c1">#初始化initialize</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">m</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="n">z</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">wx</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>    <span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">z</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>  <span class="c1">#激活函数</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>    <span class="n">J</span> <span class="o">+=</span> <span class="o">-</span><span class="p">[</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="n">log</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="err">）</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>  <span class="c1">#损失函数</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>    <span class="n">dz</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">-</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>  <span class="c1">#dJ/dz</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>    <span class="n">dw1</span> <span class="o">+=</span> <span class="n">x1</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="n">dz</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>  <span class="c1">#加起来是为了球代价函数的dw</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>    <span class="n">dw2</span> <span class="o">+=</span> <span class="n">x2</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="n">dz</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>  
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>    <span class="n">db</span> <span class="o">+=</span> <span class="n">dz</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>  
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="n">J</span><span class="o">/=</span> <span class="n">m</span><span class="p">;</span>  <span class="c1">#代价函数</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="n">dw1</span><span class="o">/=</span> <span class="n">m</span><span class="p">;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="n">dw2</span><span class="o">/=</span> <span class="n">m</span><span class="p">;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="n">db</span><span class="o">/=</span> <span class="n">m</span><span class="p">;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="n">w</span><span class="o">=</span><span class="n">w</span><span class="o">-</span><span class="n">alpha</span><span class="o">*</span><span class="n">dw</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="o">-</span><span class="n">alpha</span><span class="o">*</span><span class="n">db</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这样的编码方式存在的问题是需要两重for循环，运行效率低，所以需要进行<strong>《向量化》</strong>，从而显著地加速运算。</p>
+</div>
+<h2 id="27-vectorization"><strong>2.7 向量化</strong>（Vectorization）</h2>
+<p><code>z=np.dot(w,x)+b</code></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span>
+<span class="normal"><a href="#__codelineno-1-25">25</a></span>
+<span class="normal"><a href="#__codelineno-1-26">26</a></span>
+<span class="normal"><a href="#__codelineno-1-27">27</a></span>
+<span class="normal"><a href="#__codelineno-1-28">28</a></span>
+<span class="normal"><a href="#__codelineno-1-29">29</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1">#导入numpy库</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>  <span class="c1">#创建一个数据a</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="c1"># [1 2 3 4]</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="kn">import</span> <span class="nn">time</span> <span class="c1">#导入时间库</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>  <span class="c1">#通过round随机得到两个一百万维度的数组</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="n">tic</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>  <span class="c1">#现在测量一下当前时间</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="c1">#向量化的版本</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="nb">print</span><span class="p">(</span><span class="err">“</span><span class="n">Vectorized</span> <span class="n">version</span><span class="p">:</span><span class="err">”</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">1000</span><span class="o">*</span><span class="p">(</span><span class="n">toc</span><span class="o">-</span><span class="n">tic</span><span class="p">))</span> <span class="o">+</span><span class="err">”</span><span class="n">ms</span><span class="err">”</span><span class="p">)</span>  <span class="c1">#打印一下向量化的版本的时间</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="err">​</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="c1">#继续增加非向量化的版本</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="n">tic</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a>    <span class="n">c</span> <span class="o">+=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="nb">print</span><span class="p">(</span><span class="err">“</span><span class="n">For</span> <span class="n">loop</span><span class="p">:</span><span class="err">”</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">1000</span><span class="o">*</span><span class="p">(</span><span class="n">toc</span><span class="o">-</span><span class="n">tic</span><span class="p">))</span> <span class="o">+</span> <span class="err">“</span><span class="n">ms</span><span class="err">”</span><span class="p">)</span><span class="c1">#打印for循环的版本的时间</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25"></a>
+<a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="c1"># 250286.989866</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27"></a><span class="c1">#Vectorized version:1.5027523040771484ms</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="c1">#250286.989866</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29"></a><span class="c1">#For loop:474.29513931274414ms</span>
+</code></pre></div></td></tr></table></div>
+<p>显著的性能提升源自于numpy调用了<strong>GPU</strong>进行了<strong>并行的计算</strong>，（并行化指令：<strong>SIMD指令</strong>）<em>GPU更加擅长SIMD计算</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><u>CPU与GPU之间的差距</u>就像是：一个精通高等数学的<big>大学生</big> 和 一万名熟练掌握竖式计算的<sub>小学生</sub>。如果让他们比赛进行一万道乘法计算，虽然小学生和大学生1v1可能算的较慢，虽然大学生可以轻松解出偏微分方程，但是，这一万道乘法计算被平均分给了一万名小学生，那他们就可以在一分钟内做完这所有的题目！</p>
+</div>
+<h3 id="logistic-vectorizing-logistic-regressions-gradient"><strong>向量化 logistic 回归的梯度输出</strong>（Vectorizing Logistic Regression's Gradient）</h3>
+<p>将多组数据横向排列成矩阵，以同时完成多组数据的处理</p>
+<div class="arithmatex">\[Z=\omega^{T}X+b=np.dot(\omega.T,X)+b \]</div>
+<div class="arithmatex">\[A=\sigma(Z)\]</div>
+<div class="arithmatex">\[dZ=A-Y\]</div>
+<div class="arithmatex">\[d\omega=\frac{1}{m}*X*dz^{T}\]</div>
+<div class="arithmatex">\[db=\frac{1}{m}*np.sum(dZ)\]</div>
+<div class="arithmatex">\[\omega:=\omega-\alpha*d\omega\]</div>
+<div class="arithmatex">\[b:=b-\alpha*db\]</div>
+<h2 id="28-python-broadcasting-in-python"><strong>【附】2.8 Python 中的广播</strong>（Broadcasting in Python）</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如果一个Pytorch运算支持广播的话，那么就意味着传给这个运算的参数会被自动扩张成相同的size，在不复制数据的情况下就能行。</p>
+<p>广播机制实际上就是在运算过程中，去处理两个形状不同向量的一种手段。</p>
+<p>Numpy通过广播机制，可以让循环在C中而不是Python中进行。整个过程可以做到避免无用的复制，达到更高效的运算。</p>
+<p><img alt="695618c70fd2922182dc89dca8eb83cc" src="https://7up.pics/images/2024/08/07/695618c70fd2922182dc89dca8eb83cc.png" /></p>
+</div>
+<h2 id="29-logistic-explanation-of-logistic-regression-cost-function"><strong>【附】2.9 logistic 损失函数的解释</strong>（Explanation of logistic regression cost function）</h2>
+<p><span class="arithmatex">\(\hat{y}=\sigma (z)=\sigma (\omega^{T}x+b)=\tfrac{1}{1+e^{-z}}\)</span>
+&emsp; <span class="arithmatex">\(\hat{y}\)</span> 是给定训练样本<span class="arithmatex">\(x\)</span>条件下<span class="arithmatex">\(y\)</span>等于1的概率</p>
+<p><span class="arithmatex">\(If &emsp; &ensp; y=1: \  p(y|x)=\hat{y}\)</span></p>
+<p><span class="arithmatex">\(If &emsp; &ensp; y=0: \  p(y|x)=1-\hat{y}\)</span></p>
+<p><font size="5">====&gt;&gt; &emsp; &ensp; &emsp; &ensp; <mark><span class="arithmatex">\(p(y|x)=\hat{y}^{y}(1-\hat{y})^{1-y}\)</span></mark></font></p>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>对上式求导，<span class="arithmatex">\(log(p(y|x))\)</span>最大化等价于最大化<span class="arithmatex">\(p(y|x)\)</span>
+从而得到：$$ ylog\hat{y}+(1-y)log(1-\hat{y}) ,即损失函数的负数(-L(\hat{y},y))$$</p>
+<p>前面有一个负号的原因是当你训练学习算法时需要算法输出值的概率是最大的（以最大的概率预测这个值），然而在逻辑回归中我们需要最小化损失函数，因此最小化损失函数与最大化条件概率的对数<span class="arithmatex">\(log(p(y|x))\)</span>关联起来了，因此这就是单个训练样本的损失函数表达式。</p>
+</div>
+<h2 id="referance"><strong>Referance</strong></h2>
+<ul>
+<li><a href="http://www.ai-start.com/dl2017/html/lesson1-week2.html">深度学习笔记：第二周：神经网络的编程基础(Basics of Neural Network programming)</a></li>
+</ul>
 
 
 
