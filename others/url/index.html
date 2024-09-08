@@ -937,6 +937,12 @@
 </ul>
 <h2 id="13-url"><strong>1.3 绝对与相对URL</strong></h2>
 <p><strong>绝对URL（absolute URL）</strong>显示文件的完整路径，这意味着绝对URL本身所在的位置与被引用的实际文件的位置 <strong>无关</strong>。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>绝对路径要写成：<code>C:\\...\\</code></p>
+<p>或者 <code>C:/.../</code></p>
+<p>因为有转义字符，所以要注意</p>
+</div>
 <p><strong>相对URL（relative URL）</strong>以包含URL本身的文件夹的位置为 <strong>参考点</strong>，描述目标文件夹的位置。</p>
 <div class="admonition 相对url中">
 <p class="admonition-title">相对url中</p>
@@ -945,6 +951,12 @@
 <p>"<strong>../../</strong>"：代表的是上一层目录的上一层目录，相对路径。如：<code>&lt;imgsrc="../../abc" /&gt;</code></p>
 <p>"<strong>/</strong>"：代表根目录，绝对路径。如：<code>&lt;ahref="/abc"&gt;文本&lt;/a&gt;或&lt;img src="/abc" /&gt;</code></p>
 <p>"<strong>D:/abc/</strong>"：代表根目录，绝对路径。</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>有意思的小故事</strong>：码python代码，被干崩溃了，一串相对路径老是说“No such file or directory”，就很莫名其妙，明明路径写的很对啊QAQ</p>
+<p>后来查了很多大佬的博客才知道，这是<strong>终端运行</strong>的问题。<u>由于我们使用终端或者cmd运行，当我们运行的时候，默认路径是在python的默认路径，所以找不到你的文件。而在其他IDE上运行的默认路径就是文件所在路径，所以就可以正常生效。</u>实在是抽象的很，我就说老师在jupyter上的代码跑起来就没问题，我在vscode上用绝对路径也没问题，相对路径就不行，还是太细了。</p>
+<p>感谢：<a href="https://blog.csdn.net/qq_42372033/article/details/105119786">python 相对路径 无法打开文件 打开文件报错 No such file or directory</a></p>
 </div>
 <h2 id="21-href"><strong>2.1 href的概念</strong></h2>
 <p><strong>href (Hypertext Reference)</strong>指定网络资源的位置，从而在当前元素或者当前文档和由当前属性定义的需要的锚点或资源之间定义一个链接或者关系。</p>
