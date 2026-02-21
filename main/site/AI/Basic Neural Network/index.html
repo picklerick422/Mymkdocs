@@ -1,0 +1,1397 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../../mk/mk/">
+      
+      
+      <link rel="icon" href="../../img/favicon1.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.5">
+    
+    
+      
+        <title>神经网络编程基础 - 小鸟游六花 の Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-iibasics-of-neural-network-programming" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="小鸟游六花 の Notes" class="md-header__button md-logo" aria-label="小鸟游六花 の Notes" data-md-component="logo">
+      
+  <img src="../../img/favicon1.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            小鸟游六花 の Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              神经网络编程基础
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="小鸟游六花 の Notes" class="md-nav__button md-logo" aria-label="小鸟游六花 の Notes" data-md-component="logo">
+      
+  <img src="../../img/favicon1.png" alt="logo">
+
+    </a>
+    小鸟游六花 の Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    主页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    关于我
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    课程笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            课程笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    微积分
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            微积分
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Notes/calculus1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    微积分（甲）I
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    大物
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            大物
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Notes/physics1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    大物（甲）I
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Notes/la/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    线性代数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    人工智能相关
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            人工智能相关
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            机器学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    概述
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    神经网络编程基础
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    神经网络编程基础
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-binary-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 二分类（Binary Classification）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 二分类（Binary Classification）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      【例】. 二分类问题的example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      符号定义：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-logistic-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 逻辑回归 (Logistic Regression)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-logistic-regression-cost-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 逻辑回归的代价函数（Logistic Regression Cost Function）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-gradient-descent" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 梯度下降法（Gradient Descent）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-computation-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      【附】2.5 计算图（Computation Graph）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-logistic-regression-gradient-descent" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 逻辑回归中的梯度下降（Logistic Regression Gradient Descent）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-vectorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7 向量化（Vectorization）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7 向量化（Vectorization）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logistic-vectorizing-logistic-regressions-gradient" class="md-nav__link">
+    <span class="md-ellipsis">
+      向量化 logistic 回归的梯度输出（Vectorizing Logistic Regression's Gradient）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-python-broadcasting-in-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      【附】2.8 Python 中的广播（Broadcasting in Python）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#29-logistic-explanation-of-logistic-regression-cost-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      【附】2.9 logistic 损失函数的解释（Explanation of logistic regression cost function）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Referance
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    工具相关
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            工具相关
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    网页构建
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            网页构建
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mk/mk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mkdocs使用记录
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    杂项
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            杂项
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/url/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    URL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-binary-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 二分类（Binary Classification）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 二分类（Binary Classification）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      【例】. 二分类问题的example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      符号定义：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-logistic-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 逻辑回归 (Logistic Regression)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-logistic-regression-cost-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 逻辑回归的代价函数（Logistic Regression Cost Function）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-gradient-descent" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 梯度下降法（Gradient Descent）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-computation-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      【附】2.5 计算图（Computation Graph）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-logistic-regression-gradient-descent" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 逻辑回归中的梯度下降（Logistic Regression Gradient Descent）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-vectorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7 向量化（Vectorization）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7 向量化（Vectorization）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logistic-vectorizing-logistic-regressions-gradient" class="md-nav__link">
+    <span class="md-ellipsis">
+      向量化 logistic 回归的梯度输出（Vectorizing Logistic Regression's Gradient）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-python-broadcasting-in-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      【附】2.8 Python 中的广播（Broadcasting in Python）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#29-logistic-explanation-of-logistic-regression-cost-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      【附】2.9 logistic 损失函数的解释（Explanation of logistic regression cost function）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Referance
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="chapter-iibasics-of-neural-network-programming"><strong>Chapter II：神经网络的编程基础(Basics of Neural Network programming)</strong></h1>
+<h2 id="21-binary-classification"><strong>2.1 二分类</strong>（Binary Classification）</h2>
+<ul>
+<li>
+<p>前向暂停(<strong>forward pause</strong>) or 向前传播(<strong>forward propagation</strong>)</p>
+</li>
+<li>
+<p>反向暂停(<strong>backward pause</strong>) or 反向传播(<strong>backward propagation</strong>)</p>
+</li>
+<li>
+<p>逻辑回归(<strong>logistic regression</strong>) ---&gt; 应用于二分类问题的算法</p>
+</li>
+<li>
+<h3 id="example">【例】. 二分类问题的example</h3>
+<blockquote>
+<p><a href="https://7up.pics/image/AHQYWp"><img alt="cat1" src="https://7up.pics/images/2024/08/04/cat1.png" /></a></p>
+</blockquote>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>一张图片包含axb个像素点，每个像素点包含了红绿蓝三原色的强度值。将他们全都放在同一个列矩阵当中，构成(n=)3ab行1列矩阵，作为一个输入值。</p>
+<p>在二分类问题中，我们的目标就是训练出一个分类机，它以图片的特征向量作为输入，然后预测输出结果y为1还是0，也就是预测图片中是否有猫：</p>
+<p><a href="https://7up.pics/image/AHQCR9"><img alt="cat2" src="https://7up.pics/images/2024/08/04/cat2.png" /></a></p>
+</div>
+<h3 id="_1"><strong>符号定义：</strong></h3>
+<p><span class="arithmatex">\(x\)</span>：表示一个 <span class="arithmatex">\(n_{x}\)</span> 维数据，为输入数据，维度为 <span class="arithmatex">\((n_{x} ,1)\)</span>;</p>
+<p><span class="arithmatex">\(y\)</span>：表示输出结果，取值为 <span class="arithmatex">\((0,1)\)</span></p>
+<p><span class="arithmatex">\((x^{(i)},y^{(i)})\)</span>:表示第组 <span class="arithmatex">\(i\)</span> 数据，可能是训练数据，也可能是测试数据，此处默认为训练数据； </p>
+<p><span class="arithmatex">\(X\)</span> = <span class="arithmatex">\([x^{(1)},x^{(2)},...,x^{(m)}]\)</span>：表示所有的训练数据集的输入值，放在一个 <span class="arithmatex">\(n_{x}\)</span> x <span class="arithmatex">\(m\)</span> 的矩阵中，其中<span class="arithmatex">\(m\)</span>表示样本数目; </p>
+<p><span class="arithmatex">\(Y\)</span> = <span class="arithmatex">\([y^{(1)},y^{(2)},...,y^{(m)}]\)</span>：对应表示所有训练数据集的输出值，维度为 <span class="arithmatex">\(1\)</span> x <span class="arithmatex">\(m\)</span>。</p>
+<p>一对(x,y)表示一个单独的样本，<span class="arithmatex">\(X\)</span>为训练集，有时写做 <span class="arithmatex">\(M_{train}\)</span></p>
+<p><a href="https://7up.pics/image/AHQ4gf"><img alt="notation" src="https://7up.pics/images/2024/08/04/notation.png" /></a></p>
+<h2 id="22-logistic-regression"><strong>2.2 逻辑回归</strong> (Logistic Regression)</h2>
+<p><strong>Hypothesis Function</strong>（假设函数）：</p>
+<div class="arithmatex">\[ \hat{y}=\omega^{T} \hat{x}+b \qquad or \qquad \hat{y}=\sigma (\theta ^{T}x)\]</div>
+<p><span class="arithmatex">\(X\)</span>：输入的特征向量</p>
+<p><span class="arithmatex">\(\hat{y}\)</span>：对于实际值y的估计</p>
+<p><span class="arithmatex">\(\omega、b\)</span>：参数</p>
+<p><span class="arithmatex">\(\theta ^{T}\)</span>：参数集合，包含<span class="arithmatex">\(b\)</span>以及多个 <span class="arithmatex">\(\omega\)</span></p>
+<p><a href="https://7up.pics/image/AHQDBM"><img alt="function" src="https://7up.pics/images/2024/08/04/function.png" /></a>
+<a href="https://7up.pics/image/AHQNCZ"><img alt="theta" src="https://7up.pics/images/2024/08/04/theta.png" /></a></p>
+<h2 id="23-logistic-regression-cost-function"><strong>2.3 逻辑回归的代价函数</strong>（Logistic Regression Cost Function）</h2>
+<ul>
+<li><strong>代价函数目的</strong>：为了训练出逻辑回归模型的<span class="arithmatex">\(\omega\)</span>和<span class="arithmatex">\(b\)</span>参数，需要通过训练<strong>代价函数</strong>来得到参数</li>
+</ul>
+<p><span class="arithmatex">\(\hat{y}^{(i)}=\sigma (\omega^{T}x^{(i)}+b), \  where \  \sigma (z)=\tfrac{1}{1+e^{-z}}\)</span></p>
+<p>为了让模型通过学习调整参数，你需要给予一个<span class="arithmatex">\(m\)</span>样本的训练集，这会让你在训练集上找到参数 <span class="arithmatex">\(\omega\)</span>和参数<span class="arithmatex">\(b\)</span>,来得到你的输出。</p>
+<ul>
+<li>
+<p><strong>损失函数</strong>(误差函数)：<strong>Loss function</strong>: <span class="arithmatex">\(L(\hat{y},y)\)</span> <u>用以预测输出值与实际值有多接近。</u>
+平时我们用方差来评估误差，而在逻辑回归中的优化目标不是凸优化，只能找到多个局部最优值。</p>
+<div class="admonition note">
+<p class="admonition-title">凸优化</p>
+<p><strong>凸优化（convex optimization）</strong>就是：1、在最小化（最大化）的要求下   <br />
+2、目标函数是一个凸函数（凹函数）<br />
+3、同时约束条件所形成的可行域集合是一个凸集。</p>
+<p><strong>1.凸集</strong>：集合C中任意2个元素连线上的点也在集合C中，则C为凸集。<em>（类似于线性空间）</em></p>
+<p><strong>2.凸函数</strong></p>
+</div>
+<p>我们使用：<span class="arithmatex">\(L(\hat{y},y)=-ylog(\hat{y})-(1-y)log(1-\hat{y})\)</span></p>
+<ul>
+<li>
+<p><span class="arithmatex">\(y=1\)</span>时损失函数 <span class="arithmatex">\(L=-log(\hat{y})\)</span>，此时<span class="arithmatex">\(y\)</span>越大，损失越小</p>
+</li>
+<li>
+<p><span class="arithmatex">\(y=0\)</span>时损失函数 <span class="arithmatex">\(L=-log(1-\hat{y})\)</span>，此时<span class="arithmatex">\(y\)</span>越小，损失越小</p>
+</li>
+</ul>
+<p>为衡量算法在全部训练样本上的表现如何，我们需要定义一个<strong>算法的代价函数</strong>：对<span class="arithmatex">\(m\)</span>个样本的损失函数求和再除以<span class="arithmatex">\(m\)</span>：
+$$ J(\omega,b)=\tfrac{1}{m}\sum_{i=1}^{m}L(\hat{y}^{(i)},y^{(i)})=\tfrac{1}{m}\sum_{i=1}^{m}(-\hat{y}^{(i)}-(1-\hat{y}^{(i)})log(1-\hat{y}^{(i)}))$$</p>
+</li>
+</ul>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>那么，具体来讲，为什么损失函数会是这样的形式呢？</p>
+<p>请见<strong>【附】2.9logistic 损失函数的解释</strong>（Explanation of logistic regression cost function）</p>
+</div>
+<h2 id="24-gradient-descent"><strong>2.4 梯度下降法</strong>（Gradient Descent）</h2>
+<p><big><mark>在你测试集上，通过最小化代价函数（成本函数）<span class="arithmatex">\(J(\omega,b)\)</span> 来训练的参数 <span class="arithmatex">\(\omega、b\)</span> 。即找到最低点对应的 <span class="arithmatex">\(\omega、b\)</span></mark></big>（见下图）</p>
+<p><a href="https://7up.pics/image/AHQKVz"><img alt="gradient" src="https://7up.pics/images/2024/08/04/gradient.jpg" /></a>
+但可能会出现很多不同的局部最小值。由于代价函数 <span class="arithmatex">\(J(\omega,b)\)</span> 的特性，必须定义其为凸函数</p>
+<ul>
+<li><strong>步骤</strong><ul>
+<li><strong>1.初始化</strong>：初始化 <span class="arithmatex">\(\omega、b\)</span>（可随机</li>
+<li><strong>2.迭代</strong>：朝最陡的下坡方向走一步，不断地迭代，直到找到全局最优解</li>
+</ul>
+</li>
+</ul>
+<p>以一元（<span class="arithmatex">\(\omega\)</span>）时：</p>
+<div class="arithmatex">\[Repeat\left\{\omega:=\omega-\alpha \tfrac{dJ(\omega)}{d\omega}\right\}\]</div>
+<p>二元(<span class="arithmatex">\(\omega、b\)</span>)</p>
+<div class="arithmatex">\[
+ \begin{Bmatrix}
+ \omega:=\omega-\alpha \tfrac{\partial J(\omega)}{\partial\omega}\\\omega:=b-\alpha \tfrac{\partial J(\omega)}{\partial b}
+\end{Bmatrix}
+\]</div>
+<p>"<span class="arithmatex">\(:=\)</span>" 表示更新参数</p>
+<p>"<span class="arithmatex">\(\alpha\)</span>" 表示学习率（<strong>learning rate</strong>）,用以控制步长（<strong>step</strong>）</p>
+<p><a href="https://7up.pics/image/AHQhx4"><img alt="slope" src="https://7up.pics/images/2024/08/04/slope.jpg" /></a></p>
+<h2 id="25-computation-graph"><strong>【附】2.5 计算图</strong>（Computation Graph）</h2>
+<h2 id="26-logistic-regression-gradient-descent"><strong>2.6 逻辑回归中的梯度下降</strong>（Logistic Regression Gradient Descent）</h2>
+<p>再次明确我们的目标：通过损失函数<span class="arithmatex">\(J(\omega,b)\)</span> 得到的参数 <span class="arithmatex">\(\omega、b\)</span> 来找到最合适的逻辑回归模型。</p>
+<p>代码示例：（结合代码梳理思路）</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">J</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">dw1</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">dw2</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">db</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>  <span class="c1">#初始化initialize</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">m</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="n">z</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">wx</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>    <span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">z</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>  <span class="c1">#激活函数</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>    <span class="n">J</span> <span class="o">+=</span> <span class="o">-</span><span class="p">[</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="n">log</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="err">）</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>  <span class="c1">#损失函数</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>    <span class="n">dz</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">-</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>  <span class="c1">#dJ/dz</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>    <span class="n">dw1</span> <span class="o">+=</span> <span class="n">x1</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="n">dz</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>  <span class="c1">#加起来是为了球代价函数的dw</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>    <span class="n">dw2</span> <span class="o">+=</span> <span class="n">x2</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="n">dz</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>  
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>    <span class="n">db</span> <span class="o">+=</span> <span class="n">dz</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>  
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="n">J</span><span class="o">/=</span> <span class="n">m</span><span class="p">;</span>  <span class="c1">#代价函数</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="n">dw1</span><span class="o">/=</span> <span class="n">m</span><span class="p">;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="n">dw2</span><span class="o">/=</span> <span class="n">m</span><span class="p">;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="n">db</span><span class="o">/=</span> <span class="n">m</span><span class="p">;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="n">w</span><span class="o">=</span><span class="n">w</span><span class="o">-</span><span class="n">alpha</span><span class="o">*</span><span class="n">dw</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="o">-</span><span class="n">alpha</span><span class="o">*</span><span class="n">db</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这样的编码方式存在的问题是需要两重for循环，运行效率低，所以需要进行<strong>《向量化》</strong>，从而显著地加速运算。</p>
+</div>
+<h2 id="27-vectorization"><strong>2.7 向量化</strong>（Vectorization）</h2>
+<p><code>z=np.dot(w,x)+b</code></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span>
+<span class="normal"><a href="#__codelineno-1-25">25</a></span>
+<span class="normal"><a href="#__codelineno-1-26">26</a></span>
+<span class="normal"><a href="#__codelineno-1-27">27</a></span>
+<span class="normal"><a href="#__codelineno-1-28">28</a></span>
+<span class="normal"><a href="#__codelineno-1-29">29</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1">#导入numpy库</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>  <span class="c1">#创建一个数据a</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="c1"># [1 2 3 4]</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="kn">import</span> <span class="nn">time</span> <span class="c1">#导入时间库</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>  <span class="c1">#通过round随机得到两个一百万维度的数组</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="n">tic</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>  <span class="c1">#现在测量一下当前时间</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="c1">#向量化的版本</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="nb">print</span><span class="p">(</span><span class="err">“</span><span class="n">Vectorized</span> <span class="n">version</span><span class="p">:</span><span class="err">”</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">1000</span><span class="o">*</span><span class="p">(</span><span class="n">toc</span><span class="o">-</span><span class="n">tic</span><span class="p">))</span> <span class="o">+</span><span class="err">”</span><span class="n">ms</span><span class="err">”</span><span class="p">)</span>  <span class="c1">#打印一下向量化的版本的时间</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="err">​</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="c1">#继续增加非向量化的版本</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="n">tic</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a>    <span class="n">c</span> <span class="o">+=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="nb">print</span><span class="p">(</span><span class="err">“</span><span class="n">For</span> <span class="n">loop</span><span class="p">:</span><span class="err">”</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">1000</span><span class="o">*</span><span class="p">(</span><span class="n">toc</span><span class="o">-</span><span class="n">tic</span><span class="p">))</span> <span class="o">+</span> <span class="err">“</span><span class="n">ms</span><span class="err">”</span><span class="p">)</span><span class="c1">#打印for循环的版本的时间</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25"></a>
+<a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="c1"># 250286.989866</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27"></a><span class="c1">#Vectorized version:1.5027523040771484ms</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="c1">#250286.989866</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29"></a><span class="c1">#For loop:474.29513931274414ms</span>
+</code></pre></div></td></tr></table></div>
+<p>显著的性能提升源自于numpy调用了<strong>GPU</strong>进行了<strong>并行的计算</strong>，（并行化指令：<strong>SIMD指令</strong>）<em>GPU更加擅长SIMD计算</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><u>CPU与GPU之间的差距</u>就像是：一个精通高等数学的<big>大学生</big> 和 一万名熟练掌握竖式计算的<sub>小学生</sub>。如果让他们比赛进行一万道乘法计算，虽然小学生和大学生1v1可能算的较慢，虽然大学生可以轻松解出偏微分方程，但是，这一万道乘法计算被平均分给了一万名小学生，那他们就可以在一分钟内做完这所有的题目！</p>
+</div>
+<h3 id="logistic-vectorizing-logistic-regressions-gradient"><strong>向量化 logistic 回归的梯度输出</strong>（Vectorizing Logistic Regression's Gradient）</h3>
+<p>将多组数据横向排列成矩阵，以同时完成多组数据的处理</p>
+<div class="arithmatex">\[Z=\omega^{T}X+b=np.dot(\omega.T,X)+b \]</div>
+<div class="arithmatex">\[A=\sigma(Z)\]</div>
+<div class="arithmatex">\[dZ=A-Y\]</div>
+<div class="arithmatex">\[d\omega=\frac{1}{m}*X*dz^{T}\]</div>
+<div class="arithmatex">\[db=\frac{1}{m}*np.sum(dZ)\]</div>
+<div class="arithmatex">\[\omega:=\omega-\alpha*d\omega\]</div>
+<div class="arithmatex">\[b:=b-\alpha*db\]</div>
+<h2 id="28-python-broadcasting-in-python"><strong>【附】2.8 Python 中的广播</strong>（Broadcasting in Python）</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如果一个Pytorch运算支持广播的话，那么就意味着传给这个运算的参数会被自动扩张成相同的size，在不复制数据的情况下就能行。</p>
+<p>广播机制实际上就是在运算过程中，去处理两个形状不同向量的一种手段。</p>
+<p>Numpy通过广播机制，可以让循环在C中而不是Python中进行。整个过程可以做到避免无用的复制，达到更高效的运算。</p>
+<p><img alt="695618c70fd2922182dc89dca8eb83cc" src="https://7up.pics/images/2024/08/07/695618c70fd2922182dc89dca8eb83cc.png" /></p>
+</div>
+<h2 id="29-logistic-explanation-of-logistic-regression-cost-function"><strong>【附】2.9 logistic 损失函数的解释</strong>（Explanation of logistic regression cost function）</h2>
+<p><span class="arithmatex">\(\hat{y}=\sigma (z)=\sigma (\omega^{T}x+b)=\tfrac{1}{1+e^{-z}}\)</span>
+&emsp; <span class="arithmatex">\(\hat{y}\)</span> 是给定训练样本<span class="arithmatex">\(x\)</span>条件下<span class="arithmatex">\(y\)</span>等于1的概率</p>
+<p><span class="arithmatex">\(If &emsp; &ensp; y=1: \  p(y|x)=\hat{y}\)</span></p>
+<p><span class="arithmatex">\(If &emsp; &ensp; y=0: \  p(y|x)=1-\hat{y}\)</span></p>
+<p><font size="5">====&gt;&gt; &emsp; &ensp; &emsp; &ensp; <mark><span class="arithmatex">\(p(y|x)=\hat{y}^{y}(1-\hat{y})^{1-y}\)</span></mark></font></p>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>对上式求导，<span class="arithmatex">\(log(p(y|x))\)</span>最大化等价于最大化<span class="arithmatex">\(p(y|x)\)</span>
+从而得到：$$ ylog\hat{y}+(1-y)log(1-\hat{y}) ,即损失函数的负数(-L(\hat{y},y))$$</p>
+<p>前面有一个负号的原因是当你训练学习算法时需要算法输出值的概率是最大的（以最大的概率预测这个值），然而在逻辑回归中我们需要最小化损失函数，因此最小化损失函数与最大化条件概率的对数<span class="arithmatex">\(log(p(y|x))\)</span>关联起来了，因此这就是单个训练样本的损失函数表达式。</p>
+</div>
+<h2 id="referance"><strong>Referance</strong></h2>
+<ul>
+<li><a href="http://www.ai-start.com/dl2017/html/lesson1-week2.html">深度学习笔记：第二周：神经网络的编程基础(Basics of Neural Network programming)</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - 2024 PickleRick
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/picklerick422" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:<971711470@qq.com>" target="_blank" rel="noopener" title="971711470@qq.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.7l167.6-182.9c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://space.bilibili.com/385507467" target="_blank" rel="noopener" title="space.bilibili.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M488.6 104.1c16.7 18.1 24.4 39.7 23.3 65.7v202.4c-.4 26.4-9.2 48.1-26.5 65.1-17.2 17-39.1 25.9-65.5 26.7H92.02c-26.45-.8-48.21-9.8-65.28-27.2C9.682 419.4.767 396.5 0 368.2V169.8c.767-26 9.682-47.6 26.74-65.7C43.81 87.75 65.57 78.77 92.02 78h29.38L96.05 52.19c-5.75-5.73-8.63-13-8.63-21.79 0-8.8 2.88-16.06 8.63-21.797C101.8 2.868 109.1 0 117.9 0s16.1 2.868 21.9 8.603L213.1 78h88l74.5-69.397C381.7 2.868 389.2 0 398 0c8.8 0 16.1 2.868 21.9 8.603 5.7 5.737 8.6 12.997 8.6 21.797 0 8.79-2.9 16.06-8.6 21.79L394.6 78h29.3c26.4.77 48 9.75 64.7 26.1zm-38.8 69.7c-.4-9.6-3.7-17.4-10.7-23.5-5.2-6.1-14-9.4-22.7-9.8H96.05c-9.59.4-17.45 3.7-23.58 9.8-6.14 6.1-9.4 13.9-9.78 23.5v194.4c0 9.2 3.26 17 9.78 23.5s14.38 9.8 23.58 9.8H416.4c9.2 0 17-3.3 23.3-9.8 6.3-6.5 9.7-14.3 10.1-23.5V173.8zm-264.3 42.7c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.2 6.3-14 9.5-23.6 9.5-9.6 0-17.5-3.2-23.6-9.5-6.1-6.3-9.4-14-9.8-23.2v-33.3c.4-9.1 3.8-16.9 10.1-23.2 6.3-6.3 13.2-9.6 23.3-10 9.2.4 17 3.7 23.3 10zm191.5 0c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.1 6.3-14 9.5-23.6 9.5-9.6 0-17.4-3.2-23.6-9.5-7-6.3-9.4-14-9.7-23.2v-33.3c.3-9.1 3.7-16.9 10-23.2 6.3-6.3 14.1-9.6 23.3-10 9.2.4 17 3.7 23.3 10z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.sections", "navigation.top"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c18c5fb9.min.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+        <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+      
+    
+  </body>
+</html>

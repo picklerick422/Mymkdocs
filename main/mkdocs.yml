@@ -1,0 +1,103 @@
+site_name: 小鸟游六花 の Notes
+
+
+nav:
+    - 主页: index.md
+    - 关于我: about.md
+    - 课程笔记:
+        - 微积分: 
+            - 微积分（甲）I: Notes/calculus1.md
+        - 大物:
+            - 大物（甲）I: Notes/physics1.md
+        - 线性代数: Notes/la.md
+    - 人工智能相关:
+        - 机器学习: 
+            - 概述: AI/index.md
+            - 神经网络编程基础: AI/Basic Neural Network.md
+    - 工具相关:
+        - 网页构建:
+            - mkdocs使用记录: mk/mk.md 
+    - 杂项:
+        - URL: others/url.md
+ 
+copyright: Copyright &copy; 2023 - 2024 PickleRick
+theme:
+    name: 'material'
+    custom_dir: overrides
+    language: 'zh'
+    logo: img/favicon1.png
+    favicon: img/favicon1.png
+    palette:
+        scheme: default
+    features:
+        - search.suggest
+        - search.highlight
+        - content.code.copy
+        - content.code.annotate
+        #- navigation.instant # 点击内部链接时，不用全部刷新页面
+        - navigation.tracking # 在url中使用标题定位锚点
+        
+        - navigation.sections # nav节点缩进
+        - navigation.top # 一键回顶部
+plugins:
+      - git-revision-date-localized:
+         type: datetime 
+         fallback_to_build_date: false
+         enable_creation_date: true
+         enabled: false
+#    - blog:
+#        blog_dir: posts
+#    - rss:
+#        match_path: blog/posts/.md
+#        comments_path: "#__comments"
+#        date_from_meta:
+#           as_creation: date
+#        categories:
+#            - categories
+#            - tags
+    
+markdown_extensions:
+    - abbr
+    - def_list
+    - pymdownx.tasklist:
+        custom_checkbox: true
+    - pymdownx.highlight:
+        anchor_linenums: true
+    - pymdownx.snippets
+    - pymdownx.inlinehilite
+    - pymdownx.details
+    - pymdownx.superfences
+    - pymdownx.keys
+    - pymdownx.tabbed:
+        alternate_style: true
+    - pymdownx.arithmatex:
+        generic: true
+    - attr_list
+    - pymdownx.emoji:
+        emoji_index: !!python/name:material.extensions.emoji.twemoji
+        emoji_generator: !!python/name:material.extensions.emoji.to_svg
+    - md_in_html
+    - admonition
+extra:
+    social:
+        - icon: fontawesome/brands/github
+          link: https://github.com/picklerick422
+        - icon: fontawesome/solid/paper-plane
+          link: mailto:<971711470@qq.com>
+          name: 971711470@qq.com
+        - icon: fontawesome/brands/bilibili
+          link: https://space.bilibili.com/385507467
+
+extra_css:
+    - stylesheets/extra.css
+extra_javascript:
+    - javascripts/extra.js
+    - '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
+    - https://polyfill.io/v3/polyfill.min.js?features=es6
+    - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js
+    
+
+
+
+
+    
