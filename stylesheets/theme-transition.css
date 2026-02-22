@@ -1,0 +1,387 @@
+
+/* ============================================
+   Material for MkDocs 丝滑主题切换动画
+   ============================================ */
+
+:root {
+  --theme-transition-duration: 0.5s;
+  --theme-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 全局基础过渡 */
+*,
+*::before,
+*::after {
+  transition-property: background-color, color, border-color, fill, stroke, opacity, box-shadow, filter;
+  transition-duration: var(--theme-transition-duration);
+  transition-timing-function: var(--theme-transition-timing);
+}
+
+/* 排除列表 - 这些元素不参与过渡避免闪烁 */
+.md-search__form,
+.md-search-result,
+.md-tooltip,
+.md-clipboard,
+.md-dialog,
+.md-overlay,
+.md-skip,
+pre code,
+.hljs,
+.mermaid,
+.no-transition,
+.no-transition * {
+  transition: none !important;
+}
+
+/* ============================================
+   布局容器
+   ============================================ */
+
+body {
+  background-color: var(--md-default-bg-color);
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.md-container {
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+/* ============================================
+   导航栏
+   ============================================ */
+
+.md-header {
+  transition:
+    background-color var(--theme-transition-duration) var(--theme-transition-timing),
+    backdrop-filter var(--theme-transition-duration) var(--theme-transition-timing),
+    box-shadow var(--theme-transition-duration) var(--theme-transition-timing),
+    border-color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.md-header__title,
+.md-header__topic {
+  transition: color calc(var(--theme-transition-duration) * 0.9) var(--theme-transition-timing);
+}
+
+.md-header__option {
+  transition: color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+/* 搜索框 */
+.md-search__form {
+  transition:
+    background-color var(--theme-transition-duration) var(--theme-transition-timing),
+    color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.md-search__input {
+  transition:
+    background-color var(--theme-transition-duration) var(--theme-transition-timing),
+    color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+/* ============================================
+   侧边栏
+   ============================================ */
+
+.md-sidebar,
+.md-sidebar__scrollwrap {
+  transition:
+    background-color var(--theme-transition-duration) var(--theme-transition-timing),
+    border-color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.md-nav__title,
+.md-nav__link {
+  transition:
+    color calc(var(--theme-transition-duration) * 0.9) var(--theme-transition-timing),
+    background-color calc(var(--theme-transition-duration) * 0.9) var(--theme-transition-timing);
+}
+
+.md-nav__item--active > .md-nav__link {
+  transition:
+    color calc(var(--theme-transition-duration) * 0.9) var(--theme-transition-timing),
+    font-weight 0.2s ease;
+}
+
+/* ============================================
+   主内容区
+   ============================================ */
+
+.md-content,
+.md-content__inner {
+  transition:
+    background-color var(--theme-transition-duration) var(--theme-transition-timing),
+    color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+/* ============================================
+   排版元素
+   ============================================ */
+
+.md-typeset {
+  transition: color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+  transition:
+    color var(--theme-transition-duration) var(--theme-transition-timing),
+    border-color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.md-typeset p,
+.md-typeset li,
+.md-typeset ul,
+.md-typeset ol {
+  transition: color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+/* 链接 */
+.md-typeset a {
+  transition:
+    color calc(var(--theme-transition-duration) * 0.8) var(--theme-transition-timing),
+    border-color calc(var(--theme-transition-duration) * 0.8) var(--theme-transition-timing);
+  border-bottom: 1px solid transparent;
+}
+
+.md-typeset a:hover {
+  border-bottom-color: currentColor;
+}
+
+/* 代码 */
+.md-typeset code {
+  transition:
+    background-color var(--theme-transition-duration) var(--theme-transition-timing),
+    color var(--theme-transition-duration) var(--theme-transition-timing),
+    box-shadow var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.md-typeset pre {
+  transition:
+    background-color var(--theme-transition-duration) var(--theme-transition-timing),
+    border-color var(--theme-transition-duration) var(--theme-transition-timing),
+    box-shadow var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.highlight {
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.highlight .linenos {
+  transition:
+    background-color var(--theme-transition-duration) var(--theme-transition-timing),
+    color var(--theme-transition-duration) var(--theme-transition-timing),
+    border-color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+/* ============================================
+   组件
+   ============================================ */
+
+/* 提示框 */
+.md-typeset .admonition {
+  transition:
+    background-color var(--theme-transition-duration) var(--theme-transition-timing),
+    border-color var(--theme-transition-duration) var(--theme-transition-timing),
+    box-shadow var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.md-typeset .admonition-title {
+  transition:
+    background-color var(--theme-transition-duration) var(--theme-transition-timing),
+    color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+/* Details */
+.md-typeset details {
+  transition:
+    background-color var(--theme-transition-duration) var(--theme-transition-timing),
+    border-color var(--theme-transition-duration) var(--theme-transition-timing),
+    box-shadow var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.md-typeset details summary {
+  transition:
+    color var(--theme-transition-duration) var(--theme-transition-timing),
+    background-color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+/* 标签页 */
+.md-typeset .tabbed-set {
+  transition:
+    background-color var(--theme-transition-duration) var(--theme-transition-timing),
+    border-color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.md-typeset .tabbed-labels > label {
+  transition:
+    color calc(var(--theme-transition-duration) * 0.8) var(--theme-transition-timing),
+    background-color calc(var(--theme-transition-duration) * 0.8) var(--theme-transition-timing),
+    border-color calc(var(--theme-transition-duration) * 0.8) var(--theme-transition-timing);
+}
+
+/* 表格 */
+.md-typeset table {
+  transition:
+    background-color var(--theme-transition-duration) var(--theme-transition-timing),
+    border-color var(--theme-transition-duration) var(--theme-transition-timing),
+    box-shadow var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.md-typeset table th,
+.md-typeset table td {
+  transition:
+    background-color var(--theme-transition-duration) var(--theme-transition-timing),
+    color var(--theme-transition-duration) var(--theme-transition-timing),
+    border-color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.md-typeset table thead {
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+/* 按钮 */
+.md-button,
+.md-typeset .md-button {
+  transition:
+    background-color calc(var(--theme-transition-duration) * 0.8) var(--theme-transition-timing),
+    color calc(var(--theme-transition-duration) * 0.8) var(--theme-transition-timing),
+    border-color calc(var(--theme-transition-duration) * 0.8) var(--theme-transition-timing),
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* 引用块 */
+.md-typeset blockquote {
+  transition:
+    border-color var(--theme-transition-duration) var(--theme-transition-timing),
+    background-color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+/* 水平线 */
+.md-typeset hr {
+  transition: border-color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+/* 图片 */
+.md-typeset img {
+  transition: filter var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+[data-md-color-scheme="slate"] .md-typeset img {
+  filter: brightness(0.9);
+}
+
+/* ============================================
+   页脚
+   ============================================ */
+
+.md-footer,
+.md-footer-meta {
+  transition:
+    background-color var(--theme-transition-duration) var(--theme-transition-timing),
+    border-color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.md-footer__inner {
+  transition: color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.md-footer-social__link {
+  transition: color calc(var(--theme-transition-duration) * 0.8) var(--theme-transition-timing);
+}
+
+/* ============================================
+   切换按钮动画
+   ============================================ */
+
+/* 基础按钮 */
+.md-header__button {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.md-header__button:hover {
+  transform: scale(1.1) !important;
+}
+
+/* 主题切换按钮特殊样式 */
+.md-header__button[for^="__palette"],
+[data-md-toggle="palette"] {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 图标旋转动画 */
+.md-header__button[for^="__palette"] .md-icon,
+.md-header__button[for^="__palette"] svg,
+[data-md-toggle="palette"] .md-icon,
+[data-md-toggle="palette"] svg {
+  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+  display: block;
+}
+
+/* 悬停旋转效果 */
+.md-header__button[for^="__palette"]:hover .md-icon,
+.md-header__button[for^="__palette"]:hover svg,
+[data-md-toggle="palette"]:hover .md-icon,
+[data-md-toggle="palette"]:hover svg {
+  transform: rotate(180deg) scale(1.1) !important;
+}
+
+/* 点击时的缩放 */
+.md-header__button[for^="__palette"]:active,
+[data-md-toggle="palette"]:active {
+  transform: scale(0.95) !important;
+}
+
+/* ============================================
+   切换状态类
+   ============================================ */
+
+body.theme-transitioning {
+  pointer-events: none; /* 防止动画期间重复点击 */
+}
+
+body.theme-transitioning .md-content__inner {
+  animation: contentFloat var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+@keyframes contentFloat {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(-2px); opacity: 0.98; }
+}
+
+/* ============================================
+   性能优化
+   ============================================ */
+
+.md-header,
+.md-sidebar,
+.md-content,
+.md-typeset pre,
+.md-typeset .admonition {
+  will-change: background-color, color;
+  transform: translateZ(0);
+}
+
+/* 打印样式 */
+@media print {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* 减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --theme-transition-duration: 0.01s;
+  }
+}
