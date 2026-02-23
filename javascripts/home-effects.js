@@ -1,8 +1,7 @@
 // 首页特效：粒子背景 + 点击特效 + 3D悬浮卡片（全局鼠标追踪 + 弹性回弹版）
 (function() {
     // 只在首页执行
-    if (!document.querySelector('.md-content__inner') ||
-        !window.location.pathname.match(/(^\/$|index\.html)/)) {
+    if (!document.querySelector('.md-content__inner')) {
         return;
     }
 
