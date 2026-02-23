@@ -1,0 +1,150 @@
+/* 首页特效样式 */
+
+/* 粒子画布 */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* 3D 悬浮卡片基础样式 */
+.tilt-card {
+    position: relative;
+    display: inline-block;
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+    border-radius: 50px;
+    overflow: visible;
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06),
+        0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.tilt-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0) 50%
+    );
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: 10%;
+}
+
+.tilt-card:hover::before {
+    opacity: 1;
+    border-radius: 10%;
+}
+
+.tilt-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transform: translateZ(20px);
+    transition: transform 0.3s ease;
+    border-radius: 10%;
+}
+
+/* 光泽效果 */
+.card-glare {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at 50% 50%,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0) 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 3;
+    mix-blend-mode: overlay;
+    border-radius: 10%;
+    transform: translateZ(40px);
+}
+
+.tilt-card.is-hovering .card-glare {
+    opacity: 0.5;
+}
+
+/* 首页标题动画 */
+.md-content__inner h1 {
+    position: relative;
+    display: inline-block;
+}
+
+.md-content__inner h1::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #6366f1, #ec4899);
+    transition: width 0.8s ease;
+    border-radius: 2px;
+}
+
+.md-content__inner h1.visible::after {
+    width: 100%;
+}
+
+/* 内容渐入动画 */
+.md-content__inner > * {
+    opacity: 0;
+    transform: translateY(200px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.md-content__inner > *:nth-child(1) { animation-delay: 0.1s; }
+.md-content__inner > *:nth-child(2) { animation-delay: 0.2s; }
+.md-content__inner > *:nth-child(3) { animation-delay: 0.3s; }
+.md-content__inner > *:nth-child(4) { animation-delay: 0.4s; }
+.md-content__inner > *:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 深色模式适配 */
+[data-md-color-scheme="slate"] .tilt-card {
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.3),
+        0 2px 4px -1px rgba(0, 0, 0, 0.2),
+        0 20px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+    .tilt-card {
+        transform: none !important;
+    }
+
+    #particle-canvas {
+        opacity: 0.3;
+    }
+}
+
+/* 禁用动画偏好设置 */
+@media (prefers-reduced-motion: reduce) {
+    .tilt-card,
+    .md-content__inner > * {
+        animation: none;
+        transform: none;
+        opacity: 1;
+    }
+}
