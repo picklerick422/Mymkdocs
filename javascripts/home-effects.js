@@ -1,6 +1,6 @@
 // 首页特效：粒子背景 + 点击特效 + 3D悬浮卡片（全局鼠标追踪 + 弹性回弹版）
 (function() {
-    // 只在首页执行
+    // 在全局执行（仅检查内容区域是否存在）
     if (!document.querySelector('.md-content__inner')) {
         return;
     }
@@ -93,30 +93,41 @@
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
             this.particles.forEach((p, i) => {
+                // 位置更新
                 p.x += p.vx;
                 p.y += p.vy;
 
+                // 边界反弹
                 if (p.x < 0 || p.x > this.canvas.width) p.vx *= -1;
                 if (p.y < 0 || p.y > this.canvas.height) p.vy *= -1;
 
+                let mouseDist = null;
+
+                // 鼠标吸引：一定范围内被鼠标“吸过去”
                 if (this.mouse.x !== null) {
                     const dx = this.mouse.x - p.x;
                     const dy = this.mouse.y - p.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    mouseDist = Math.sqrt(dx * dx + dy * dy);
 
-                    if (dist < config.mouseDistance) {
-                        const force = (config.mouseDistance - dist) / config.mouseDistance;
-                        p.vx += (dx / dist) * force * 0.02;
-                        p.vy += (dy / dist) * force * 0.02;
+                    if (mouseDist < config.mouseDistance && mouseDist > 0.001) {
+                        const force = (config.mouseDistance - mouseDist) / config.mouseDistance;
+                        const strength = 0.12; // 吸引强度
+                        const nx = dx / mouseDist;
+                        const ny = dy / mouseDist;
+
+                        p.vx += nx * force * strength;
+                        p.vy += ny * force * strength;
                     }
                 }
 
+                // 绘制粒子
                 this.ctx.beginPath();
                 this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
                 this.ctx.fillStyle = p.color;
                 this.ctx.globalAlpha = p.alpha;
                 this.ctx.fill();
 
+                // 粒子之间连线
                 for (let j = i + 1; j < this.particles.length; j++) {
                     const p2 = this.particles[j];
                     const dx = p.x - p2.x;
@@ -132,6 +143,16 @@
                         this.ctx.stroke();
                     }
                 }
+
+                // 粒子与鼠标连线
+                if (this.mouse.x !== null && mouseDist !== null && mouseDist < config.mouseDistance) {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(p.x, p.y);
+                    this.ctx.lineTo(this.mouse.x, this.mouse.y);
+                    this.ctx.strokeStyle = p.color;
+                    this.ctx.globalAlpha = (1 - mouseDist / config.mouseDistance) * 0.4;
+                    this.ctx.stroke();
+                }
             });
 
             requestAnimationFrame(() => this.animate());
@@ -142,6 +163,8 @@
     class ClickEffect {
         constructor() {
             this.particles = [];
+            // 暴露给其他特效使用（如点赞烟花）
+            window.__pageClickEffect = this;
             this.bindEvents();
             this.animate();
         }
@@ -157,13 +180,32 @@
             });
         }
 
-        createExplosion(x, y) {
+        createExplosion(x, y, options = {}) {
+            const { multiplier = 1, upwardBias = false, mainHue } = options;
             const isDark = document.body.getAttribute('data-md-color-scheme') === 'slate';
             const colors = isDark ? config.colors.dark : config.colors.light;
 
-            for (let i = 0; i < config.clickParticleCount; i++) {
-                const angle = (Math.PI * 2 / config.clickParticleCount) * i;
-                const velocity = Math.random() * 4 + 2;
+            const count = Math.max(6, Math.floor(config.clickParticleCount * multiplier));
+
+            const pickColor = () => {
+                if (mainHue !== undefined && mainHue !== null) {
+                    // 主体颜色与光条一致，饱和度/亮度微调增加层次
+                    const s = 80 + Math.random() * 20;
+                    const l = isDark ? 55 + Math.random() * 25 : 50 + Math.random() * 25;
+                    return `hsl(${mainHue}, ${s}%, ${l}%)`;
+                }
+                return colors[Math.floor(Math.random() * colors.length)];
+            };
+
+            for (let i = 0; i < count; i++) {
+                let angle;
+                if (upwardBias) {
+                    // 上半圆范围内随机角度（主要向上发散）
+                    angle = -Math.PI + Math.random() * Math.PI;
+                } else {
+                    angle = (Math.PI * 2 / count) * i;
+                }
+                const velocity = Math.random() * 4 + 3;
 
                 this.particles.push({
                     x: x,
@@ -172,7 +214,7 @@
                     vy: Math.sin(angle) * velocity,
                     life: 1,
                     decay: Math.random() * 0.02 + 0.015,
-                    color: colors[Math.floor(Math.random() * colors.length)],
+                    color: pickColor(),
                     size: Math.random() * 4 + 2
                 });
             }
@@ -483,10 +525,101 @@
         }
     }
 
+    // ==================== about 页点赞烟花按钮 ====================
+    function initSupportFireworks() {
+        const btn = document.getElementById('support-fireworks');
+        if (!btn) return;
+
+        let isTube = false;
+
+        btn.classList.add('support-fireworks-ready');
+
+        btn.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            if (!isTube) {
+                isTube = true;
+                btn.classList.add('support-fireworks--tube');
+                btn.textContent = '点我发射烟花';
+                return;
+            }
+
+            // tube 状态：每次点击都可以再发一轮烟花
+            btn.classList.add('support-fireworks--launched');
+            btn.textContent = '烟花发射中...';
+
+            createFireworksFromButton(btn, () => {
+                btn.classList.remove('support-fireworks--launched');
+                btn.textContent = '再来一波烟花';
+            });
+        });
+    }
+
+    function createFireworksFromButton(button, onDone) {
+        const rect = button.getBoundingClientRect();
+        const originX = rect.left + rect.width / 2;
+        const originY = rect.top;
+
+        const effect = window.__pageClickEffect;
+        if (!effect) {
+            if (typeof onDone === 'function') onDone();
+            return;
+        }
+
+        // 随机高度、光条长度、颜色与轻微水平偏移
+        const randomHeight = 180 + Math.random() * 140; // 180 - 320
+        const randomBarLength = 12 + Math.random() * 18; // 12 - 30px 光条长度
+        const randomHue = Math.floor(Math.random() * 360);
+        const horizontalOffset = (Math.random() - 0.5) * 60; // 左右最多 30px 偏移
+
+        // DOM 层：承载上升的竖直光条
+        const layer = document.createElement('div');
+        layer.className = 'support-fireworks-layer';
+        document.body.appendChild(layer);
+
+        const firework = document.createElement('div');
+        firework.className = 'support-fireworks-firework';
+        firework.style.left = `${originX + horizontalOffset}px`;
+        firework.style.top = `${originY}px`;
+        firework.style.setProperty('--fx-hue', randomHue);
+        firework.style.setProperty('--fx-height', `${randomHeight}px`);
+        firework.style.setProperty('--fx-length', `${randomBarLength}px`);
+        layer.appendChild(firework);
+
+        let exploded = false;
+        const explode = () => {
+            if (exploded) return;
+            exploded = true;
+
+            const apexY = originY - randomHeight;
+            const explosionX = originX + horizontalOffset;
+
+            const explosionMultiplier = 2.2 + Math.random() * 1.8; // 2.2 - 4.0：粒子略多一些，范围更大
+            const upwardBias = Math.random() < 0.4; // 偶尔稍微偏向上方
+
+            effect.createExplosion(explosionX, apexY, {
+                multiplier: explosionMultiplier,
+                upwardBias,
+                mainHue: randomHue
+            });
+
+            layer.remove();
+        };
+
+        firework.addEventListener('animationend', explode, { once: true });
+
+        // 提前回调，不等待上升动画结束，使连续点击更顺畅
+        const RECOIL_MS = 220;
+        setTimeout(() => {
+            if (typeof onDone === 'function') onDone();
+        }, RECOIL_MS);
+    }
+
     // ==================== 初始化 ====================
     document.addEventListener('DOMContentLoaded', () => {
         new ParticleBackground();
         new ClickEffect();
         new FloatingCards();
+        initSupportFireworks();
     });
 })();

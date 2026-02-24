@@ -148,3 +148,210 @@
         opacity: 1;
     }
 }
+
+/* ==================== about 页点赞烟花按钮 ==================== */
+
+/* 初始按钮增强：让变形更顺滑 */
+#support-fireworks {
+    position: relative;
+    overflow: hidden;
+    transform-origin: center bottom;
+    transition:
+        transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+        border-radius 0.35s ease,
+        background 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+/* 变成烟花筒形态 */
+#support-fireworks.support-fireworks--tube {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    border-radius: 999px;
+    min-width: 7.5rem;
+    height: 3.4rem;
+    padding: 0.4rem 1.6rem 0.6rem;
+    transform: translateY(0.1rem) scale(1.02);
+    box-shadow:
+        0 10px 22px rgba(15, 23, 42, 0.45);
+    background: radial-gradient(circle at 20% 0%, rgba(248, 250, 252, 0.6), transparent 55%),
+                linear-gradient(180deg, #facc15, #f97316 55%, #b91c1c);
+}
+
+/* 烟花筒上沿圆口 */
+#support-fireworks.support-fireworks--tube::before {
+    content: '';
+    position: absolute;
+    top: -0.3rem;
+    left: 50%;
+    width: 70%;
+    height: 0.9rem;
+    border-radius: 999px;
+    transform: translateX(-50%);
+    background:
+        radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.85), transparent 70%),
+        linear-gradient(180deg, rgba(248, 250, 252, 0.95), rgba(148, 163, 184, 0.7));
+    box-shadow:
+        0 3px 6px rgba(15, 23, 42, 0.4);
+    opacity: 0;
+    transform-origin: center;
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+}
+
+/* 烟花筒底部阴影 */
+#support-fireworks.support-fireworks--tube::after {
+    content: '';
+    position: absolute;
+    bottom: -0.35rem;
+    left: 50%;
+    width: 85%;
+    height: 0.6rem;
+    border-radius: 999px;
+    transform: translateX(-50%);
+    background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.5), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+#support-fireworks.support-fireworks--tube.support-fireworks-ready::before,
+#support-fireworks.support-fireworks--tube.support-fireworks-ready::after {
+    opacity: 1;
+}
+
+@keyframes support-fireworks-fuse {
+    0% {
+        box-shadow:
+            0 0 4px rgba(248, 250, 252, 0.5),
+            0 0 8px rgba(252, 211, 77, 0.5);
+        opacity: 0.9;
+    }
+    50% {
+        box-shadow:
+            0 0 16px rgba(248, 250, 252, 1),
+            0 0 28px rgba(250, 204, 21, 1);
+        opacity: 1;
+    }
+    100% {
+        box-shadow:
+            0 0 4px rgba(248, 250, 252, 0.5),
+            0 0 8px rgba(252, 211, 77, 0.5);
+        opacity: 0.9;
+    }
+}
+
+/* 发射时后坐 + 轻微摆动 */
+#support-fireworks.support-fireworks--launched {
+    animation: support-fireworks-recoil 0.28s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@keyframes support-fireworks-recoil {
+    0% {
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+    45% {
+        transform: translateY(0.18rem) scale(0.96) rotate(-3deg);
+    }
+    80% {
+        transform: translateY(-0.08rem) scale(1.02) rotate(1.5deg);
+    }
+    100% {
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+}
+
+/* 烟花 DOM 层 */
+.support-fireworks-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9998;
+    overflow: visible;
+}
+
+.support-fireworks-firework {
+    position: absolute;
+    width: 4px;
+    height: var(--fx-length, 24px);
+    border-radius: 999px;
+    background: hsl(var(--fx-hue, 320) 95% 70%);
+    box-shadow:
+        0 0 8px hsla(var(--fx-hue, 320) 100% 75% / 0.95),
+        0 0 16px hsla(var(--fx-hue, 320) 100% 70% / 0.8);
+    transform: translate(-50%, 0);
+    transform-origin: 50% 100%;
+    animation:
+        support-fireworks-shoot 1s cubic-bezier(0.15, 0.7, 0.15, 1) forwards,
+        support-fireworks-trail 1s ease-out forwards;
+}
+
+.support-fireworks-firework::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    /* 关闭自身的环形爆炸，只保留 Canvas 粒子爆炸，避免出现暗色圆环 */
+    animation: none;
+}
+
+@keyframes support-fireworks-shoot {
+    0% {
+        transform: translate(-50%, 0) scaleY(0.2);
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    70% {
+        transform: translate(-50%, calc(-1 * var(--fx-height, 220px))) scaleY(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, calc(-1 * var(--fx-height, 220px))) scaleY(0.9);
+        opacity: 1;
+    }
+}
+
+@keyframes support-fireworks-trail {
+    0% {
+        box-shadow:
+            0 0 8px hsla(var(--fx-hue, 320) 100% 75% / 0.95),
+            0 0 16px hsla(var(--fx-hue, 320) 100% 70% / 0.8);
+    }
+    100% {
+        box-shadow:
+            0 0 4px hsla(var(--fx-hue, 320) 100% 70% / 0.5),
+            0 0 10px hsla(var(--fx-hue, 320) 100% 70% / 0.3);
+    }
+}
+
+@keyframes support-fireworks-burst {
+    0% {
+        opacity: 0;
+        transform: scale(0.2);
+        box-shadow:
+            0 0 0 0 hsla(var(--fx-hue, 320) 100% 75% / 0.9),
+            0 0 0 0 hsla(var(--fx-hue, 320) 100% 85% / 0.8),
+            0 0 0 0 hsla(var(--fx-hue, 320) 100% 75% / 0.7);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow:
+            0 0 0 12px hsla(var(--fx-hue, 320) 100% 75% / 0.9),
+            10px 0 0 18px hsla(var(--fx-hue, 320) 100% 85% / 0.7),
+            -10px 0 0 18px hsla(var(--fx-hue, 320) 100% 80% / 0.7);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.15);
+        box-shadow:
+            0 0 0 26px hsla(var(--fx-hue, 320) 100% 75% / 0),
+            14px 0 0 28px hsla(var(--fx-hue, 320) 100% 85% / 0),
+            -14px 0 0 28px hsla(var(--fx-hue, 320) 100% 80% / 0);
+    }
+}
