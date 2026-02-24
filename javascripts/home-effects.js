@@ -373,28 +373,6 @@
                 this.releaseCard(cardData);
             });
 
-            // 点击涟漪效果：使用 CSS 中的 .ripple 动画
-            wrapper.addEventListener('click', (e) => {
-                const rect = wrapper.getBoundingClientRect();
-
-                const ripple = document.createElement('span');
-                ripple.className = 'ripple';
-
-                const size = Math.max(rect.width, rect.height) * 1.4;
-                ripple.style.width = `${size}px`;
-                ripple.style.height = `${size}px`;
-
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                ripple.style.left = `${x}px`;
-                ripple.style.top = `${y}px`;
-
-                wrapper.appendChild(ripple);
-
-                ripple.addEventListener('animationend', () => {
-                    ripple.remove();
-                });
-            });
 
             // 更新位置信息
             const updateRect = () => {
@@ -518,10 +496,14 @@
             `;
 
             card.element.style.transform = transform;
+            // 确保变换原点居中
+            card.element.style.transformOrigin = 'center center';
 
             // 内部元素微移增强立体感
             const innerOffset = card.isHovering ? 30 : 0;
             card.inner.style.transform = `translateZ(${innerOffset}px)`;
+            // 确保内部元素的变换原点也居中
+            card.inner.style.transformOrigin = 'center center';
         }
     }
 
@@ -566,9 +548,10 @@
             return;
         }
 
-        // 随机高度、光条长度、颜色与轻微水平偏移
+        // 随机高度、光条长度、光点大小、颜色与轻微水平偏移
         const randomHeight = 180 + Math.random() * 140; // 180 - 320
         const randomBarLength = 12 + Math.random() * 18; // 12 - 30px 光条长度
+        const randomDotSize = 3.5 + Math.random() * 2.5; // 3.5 - 6px 光点大小
         const randomHue = Math.floor(Math.random() * 360);
         const horizontalOffset = (Math.random() - 0.5) * 60; // 左右最多 30px 偏移
 
@@ -584,6 +567,7 @@
         firework.style.setProperty('--fx-hue', randomHue);
         firework.style.setProperty('--fx-height', `${randomHeight}px`);
         firework.style.setProperty('--fx-length', `${randomBarLength}px`);
+        firework.style.setProperty('--fx-dot', `${randomDotSize}px`);
         layer.appendChild(firework);
 
         let exploded = false;
@@ -606,7 +590,13 @@
             layer.remove();
         };
 
-        firework.addEventListener('animationend', explode, { once: true });
+        const onAnimEnd = (e) => {
+            // 等到 hold 动画结束（也就是“收缩成光点”完成）才爆炸
+            if (e.animationName !== 'support-fireworks-hold') return;
+            firework.removeEventListener('animationend', onAnimEnd);
+            explode();
+        };
+        firework.addEventListener('animationend', onAnimEnd);
 
         // 提前回调，不等待上升动画结束，使连续点击更顺畅
         const RECOIL_MS = 220;
@@ -615,11 +605,104 @@
         }, RECOIL_MS);
     }
 
+    // ==================== 顶部标题栏动效装饰 ====================
+    class HeaderEffects {
+        constructor() {
+            this.header = null;
+            this.layer = null;
+            this.sprinkles = [];
+            this.resizeRaf = null;
+
+            this.init();
+        }
+
+        init() {
+            const header = document.querySelector('.md-header');
+            if (!header) return;
+
+            // 避免重复注入（例如页面局部刷新/脚本重复执行）
+            if (header.querySelector('.md-header-effects')) return;
+
+            this.header = header;
+            header.setAttribute('data-header-effects', '1');
+
+            const layer = document.createElement('div');
+            layer.className = 'md-header-effects';
+            layer.setAttribute('aria-hidden', 'true');
+            header.appendChild(layer);
+            this.layer = layer;
+
+            // 渐变光斑（固定数量，CSS 动画为主）
+            const orbs = [
+                { className: 'md-header-orb orb-1' },
+                { className: 'md-header-orb orb-2' },
+                { className: 'md-header-orb orb-3' }
+            ];
+            orbs.forEach(o => {
+                const el = document.createElement('div');
+                el.className = o.className;
+                layer.appendChild(el);
+            });
+
+            // 星点：少量随机分布，低成本增强“活性”
+            this.rebuildSprinkles();
+            window.addEventListener('resize', () => this.onResize(), { passive: true });
+        }
+
+        onResize() {
+            if (this.resizeRaf) cancelAnimationFrame(this.resizeRaf);
+            this.resizeRaf = requestAnimationFrame(() => {
+                this.rebuildSprinkles();
+                this.resizeRaf = null;
+            });
+        }
+
+        rebuildSprinkles() {
+            if (!this.layer) return;
+
+            // 清空旧的
+            this.sprinkles.forEach(el => el.remove());
+            this.sprinkles = [];
+
+            // prefers-reduced-motion 下保持静态（不生成额外元素）
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                return;
+            }
+
+            const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+            const count = isMobile ? 10 : 18;
+
+            for (let i = 0; i < count; i++) {
+                const s = document.createElement('span');
+                s.className = 'md-header-sparkle';
+
+                // 位置：避开左侧 logo 的常见区域（0~18%），以及右侧按钮密集区（92~100%）
+                const x = 18 + Math.random() * 74; // 18% - 92%
+                const y = 10 + Math.random() * 80; // 10% - 90%
+
+                const size = (Math.random() * 1.6 + 1.0).toFixed(2); // 1.0 - 2.6px
+                const delay = (Math.random() * 4).toFixed(2); // 0 - 4s
+                const duration = (Math.random() * 3 + 2.2).toFixed(2); // 2.2 - 5.2s
+
+                s.style.left = `${x}%`;
+                s.style.top = `${y}%`;
+                s.style.width = `${size}px`;
+                s.style.height = `${size}px`;
+                s.style.animationDelay = `${delay}s`;
+                s.style.animationDuration = `${duration}s`;
+
+                this.layer.appendChild(s);
+                this.sprinkles.push(s);
+            }
+        }
+    }
+
     // ==================== 初始化 ====================
     document.addEventListener('DOMContentLoaded', () => {
         new ParticleBackground();
         new ClickEffect();
         new FloatingCards();
         initSupportFireworks();
+        new HeaderEffects();
     });
 })();

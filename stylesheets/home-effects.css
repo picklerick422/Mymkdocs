@@ -14,10 +14,10 @@
 /* 3D 悬浮卡片基础样式 */
 .tilt-card {
     position: relative;
-    display: inline-block;
+    display: block;
     transform-style: preserve-3d;
     transition: transform 0.1s ease-out;
-    border-radius: 50px;
+    border-radius: 10%;
     overflow: visible;
     box-shadow:
         0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -28,7 +28,7 @@
 
 .tilt-card::before {
     content: '';
-    position: absolute;
+    position: relative;
     inset: 0;
     background: linear-gradient(
         135deg,
@@ -40,23 +40,25 @@
     opacity: 0;
     transition: opacity 0.3s;
     border-radius: 10%;
+    width: 80%;
 }
 
 .tilt-card:hover::before {
-    opacity: 1;
+    opacity: 0;
     border-radius: 10%;
 }
 
 .tilt-card img {
-    display: block;
+    display: flexbox;
     width: 100%;
     height: auto;
     transform: translateZ(20px);
     transition: transform 0.3s ease;
     border-radius: 10%;
+    object-fit: cover; /* 确保图片适应容器 */
 }
 
-/* 光泽效果 */
+/* 光泽效果 
 .card-glare {
     position: absolute;
     inset: 0;
@@ -73,6 +75,7 @@
     border-radius: 10%;
     transform: translateZ(40px);
 }
+*/
 
 .tilt-card.is-hovering .card-glare {
     opacity: 0.5;
@@ -146,6 +149,60 @@
         animation: none;
         transform: none;
         opacity: 1;
+    }
+}
+
+/* ==================== 顶部标题栏简单流光效果 ==================== */
+
+/* ==================== 顶部标题栏简单流光效果 ==================== */
+
+:root {
+    /* 以蓝色为主，只少量加入紫色 */
+    --header-gradient-a: #1d4ed8;  /* 深一点的蓝 */
+    --header-gradient-b: #2563eb;  /* 主蓝 */
+    --header-gradient-c: #4f46e5;  /* 蓝紫 */
+    --header-gradient-d: #7c3aed;  /* 少量紫色点缀 */
+}
+
+[data-md-color-scheme="slate"] {
+    --header-gradient-a: #1e3a8a;
+    --header-gradient-b: #2563eb;
+    --header-gradient-c: #4f46e5;
+    --header-gradient-d: #6d28d9;
+}
+
+/* 直接给整个 .md-header 加流光，覆盖整条导航条 */
+.md-header {
+    background-image: linear-gradient(
+        135deg,
+        var(--header-gradient-a),
+        var(--header-gradient-b),
+        var(--header-gradient-c),
+        var(--header-gradient-d),
+        var(--header-gradient-c),
+        var(--header-gradient-b)
+    ) !important;
+    background-size: 260% 260% !important;
+    animation: headerGradientFlow 16s ease-in-out infinite !important;
+}
+
+/* ==================== 顶部标题栏简单流光效果 ==================== */
+
+@keyframes headerGradientFlow {
+    0% {
+        background-position: 0% 40%;
+    }
+    25% {
+        background-position: 40% 70%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    75% {
+        background-position: 60% 25%;
+    }
+    100% {
+        background-position: 0% 40%;
     }
 }
 
@@ -274,6 +331,38 @@
 
 .support-fireworks-firework {
     position: absolute;
+    transform: translate(-50%, 0);
+    will-change: transform, opacity;
+    animation:
+        support-fireworks-rise 0.75s cubic-bezier(0.15, 0.7, 0.15, 1) 0s forwards,
+        support-fireworks-hold 0.4s linear 0.75s forwards;
+}
+
+.support-fireworks-firework::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: var(--fx-dot, 5px);
+    height: var(--fx-dot, 5px);
+    border-radius: 999px;
+    transform: translateX(-50%) scale(0.25);
+    opacity: 0;
+    background: hsl(var(--fx-hue, 320) 95% 72%);
+    box-shadow:
+        0 0 10px hsla(var(--fx-hue, 320) 100% 80% / 0.95),
+        0 0 18px hsla(var(--fx-hue, 320) 100% 70% / 0.75);
+    will-change: transform, opacity, box-shadow;
+    /* 提前到上升后段开始，与光条收缩同时进行，肉眼更容易捕捉到“变光点”动画 */
+    animation: support-fireworks-dot-in 0.22s ease-out 0.3s forwards;
+}
+
+/* 光条/光点本体：到顶瞬间立刻开始收缩（无停顿） */
+.support-fireworks-firework::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
     width: 4px;
     height: var(--fx-length, 24px);
     border-radius: 999px;
@@ -281,38 +370,53 @@
     box-shadow:
         0 0 8px hsla(var(--fx-hue, 320) 100% 75% / 0.95),
         0 0 16px hsla(var(--fx-hue, 320) 100% 70% / 0.8);
-    transform: translate(-50%, 0);
-    transform-origin: 50% 100%;
+    transform-origin: 50% 0%;
+    will-change: transform, box-shadow;
     animation:
-        support-fireworks-shoot 1s cubic-bezier(0.15, 0.7, 0.15, 1) forwards,
-        support-fireworks-trail 1s ease-out forwards;
+        support-fireworks-bar-out 0.22s ease-in 0.3s forwards,
+        support-fireworks-trail 1.15s ease-out 0s forwards;
+    transform: translateX(-50%) scaleY(1);
 }
 
-.support-fireworks-firework::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    opacity: 0;
-    /* 关闭自身的环形爆炸，只保留 Canvas 粒子爆炸，避免出现暗色圆环 */
-    animation: none;
-}
-
-@keyframes support-fireworks-shoot {
+@keyframes support-fireworks-rise {
     0% {
-        transform: translate(-50%, 0) scaleY(0.2);
+        transform: translate(-50%, 0);
         opacity: 0;
     }
-    15% {
-        opacity: 1;
-    }
-    70% {
-        transform: translate(-50%, calc(-1 * var(--fx-height, 220px))) scaleY(1);
+    10% {
         opacity: 1;
     }
     100% {
-        transform: translate(-50%, calc(-1 * var(--fx-height, 220px))) scaleY(0.9);
+        transform: translate(-50%, calc(-1 * var(--fx-height, 220px)));
+        opacity: 0.9;
+    }
+}
+
+/* 占位：让 animationend 发生在“变光点”之后 */
+@keyframes support-fireworks-hold {
+    from { opacity: 1; }
+    to { opacity: 1; }
+}
+
+@keyframes support-fireworks-bar-out {
+    from {
+        transform: translateX(-50%) scaleY(1);
         opacity: 1;
+    }
+    to {
+        transform: translateX(-50%) scaleY(0.05);
+        opacity: 0.2;
+    }
+}
+
+@keyframes support-fireworks-dot-in {
+    from {
+        transform: translateX(-50%) scale(0.25);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) scale(1);
+        opacity: 0.8;
     }
 }
 
@@ -324,8 +428,8 @@
     }
     100% {
         box-shadow:
-            0 0 4px hsla(var(--fx-hue, 320) 100% 70% / 0.5),
-            0 0 10px hsla(var(--fx-hue, 320) 100% 70% / 0.3);
+            0 0 4px hsla(var(--fx-hue, 320) 100% 70% / 0.55),
+            0 0 10px hsla(var(--fx-hue, 320) 100% 70% / 0.35);
     }
 }
 
